@@ -1,10 +1,12 @@
 import Navbar from './Navbar'
+import liquorShelves from '../assets/liquor-shelves-retina-size.jpg.nosync.jpg'
 
 const Header = () => {
   
   return (
     <>
-        <Navbar />
+      <img src={liquorShelves}></img>
+      <Navbar />
     </>
   )
 }
