@@ -4,9 +4,7 @@ const Header = () => {
   
   return (
     <>
-      <div className="w-screen">
         <Navbar />
-      </div>
     </>
   )
 }
