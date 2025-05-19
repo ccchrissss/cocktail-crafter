@@ -1,5 +1,6 @@
 // import { useState } from 'react'
 import Header from './components/Header'
+import CocktailPicker from './components/CocktailPicker'
 import Footer from './components/Footer'
 import FeaturedCocktails from './components/FeaturedCocktails'
 import './App.css'
@@ -10,6 +11,7 @@ function App() {
   return (
     <>
       <Header />
+      <CocktailPicker />
       <FeaturedCocktails />
       <Footer />
     </>
