@@ -3,6 +3,7 @@ import { useRef } from 'react'
 
 const CocktailPicker = () => {
   const inputRef = useRef()
+  let drinkImage = "https://img.daisyui.com/images/stock/photo-1494232410401-ad00d5433cfa.webp"
 
   const handleSubmit = event => {
     event.preventDefault()
@@ -24,6 +25,7 @@ const CocktailPicker = () => {
         .then(res => res.json())
         .then(data => {
             console.log(data)
+            drinkImage = data.drinks[0].strDrinkThumb
             console.log(data.drinks[0].strDrink)
             console.log(data.drinks[0].strGlass)
             console.log(data.drinks[0].strInstructions)
@@ -59,6 +61,31 @@ const CocktailPicker = () => {
               <button type="submit" className="btn btn-primary mb-6">Get Cocktail</button>
             </form>
           </div>
+        </div>
+      </div>
+
+      <div className="card lg:card-side bg-base-100 shadow-sm">
+        <figure>
+          <img
+            src={drinkImage}
+            alt="cocktail" />
+        </figure>
+        <div className="card-body">
+          <h2 className="card-title">Drink Name</h2>
+          <p>Glass Type</p>
+          <ul>
+            <li>Ingredient</li>
+            <li>Ingredient</li>
+            <li>Ingredient</li>
+          </ul>
+          <ol>
+            <li>Instruction</li>
+            <li>Instruction</li>
+            <li>Instruction</li>
+          </ol>
+          {/* <div className="card-actions justify-end">
+            <button className="btn btn-primary">Listen</button>
+          </div> */}
         </div>
       </div>
     </>
