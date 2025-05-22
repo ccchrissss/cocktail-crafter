@@ -1,6 +1,40 @@
 import cocktailInHand from '../assets/cocktail-in-hand-table.jpg'
+import { useRef } from 'react'
 
 const CocktailPicker = () => {
+  const inputRef = useRef()
+
+  const handleSubmit = event => {
+    event.preventDefault()
+    // console.log('handleSubmit')
+    getDrink()
+  }
+
+  const filterByPosition = (array, element, position) => {
+    return array.filter(innerArray => innerArray[position].includes(element) == true);
+  }
+
+  const getDrink = () => {
+    // console.log('getDrink')
+    console.log(inputRef.current.value)
+    
+    const drink = inputRef.current.value
+
+    fetch(`https://thecocktaildb.com/api/json/v1/1/search.php?s=${drink}`)
+        .then(res => res.json())
+        .then(data => {
+            console.log(data)
+            console.log(data.drinks[0].strDrink)
+            console.log(data.drinks[0].strGlass)
+            console.log(data.drinks[0].strInstructions)
+
+            let ingredientsArr = filterByPosition(Object.entries(data.drinks[0]), 'Ingredient', 0)
+            let measureArr = filterByPosition(Object.entries(data.drinks[0]), 'Measure', 0)
+
+            console.log(ingredientsArr)
+            console.log(measureArr)
+        })
+  }
 
   return (
     <>
@@ -20,10 +54,10 @@ const CocktailPicker = () => {
               Which cocktail would you like to make&nbsp;today?
               </p>
             </div>
-            <div className="flex justify-center max-w-88 m-auto">
-              <input type="text" placeholder="e.g. margarita" className="input mr-2 mb-6" />
-              <button className="btn btn-primary mb-6">Get Cocktail</button>
-            </div>
+            <form onSubmit={handleSubmit} className="flex justify-center max-w-88 m-auto">
+              <input type="text" ref={inputRef} placeholder="e.g. margarita" className="input mr-2 mb-6" />
+              <button type="submit" className="btn btn-primary mb-6">Get Cocktail</button>
+            </form>
           </div>
         </div>
       </div>
