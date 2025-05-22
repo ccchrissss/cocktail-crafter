@@ -1,9 +1,9 @@
 import cocktailInHand from '../assets/cocktail-in-hand-table.jpg'
-import { useRef } from 'react'
+import { useState, useRef } from 'react'
 
 const CocktailPicker = () => {
   const inputRef = useRef()
-  let drinkImage = "https://img.daisyui.com/images/stock/photo-1494232410401-ad00d5433cfa.webp"
+  const [drinkImage, setDrinkImage] = useState(null)
 
   const handleSubmit = event => {
     event.preventDefault()
@@ -25,7 +25,6 @@ const CocktailPicker = () => {
         .then(res => res.json())
         .then(data => {
             console.log(data)
-            drinkImage = data.drinks[0].strDrinkThumb
             console.log(data.drinks[0].strDrink)
             console.log(data.drinks[0].strGlass)
             console.log(data.drinks[0].strInstructions)
@@ -35,6 +34,8 @@ const CocktailPicker = () => {
 
             console.log(ingredientsArr)
             console.log(measureArr)
+
+            setDrinkImage(data.drinks[0].strDrinkThumb)
         })
   }
 
@@ -58,11 +59,12 @@ const CocktailPicker = () => {
             </div>
             <form onSubmit={handleSubmit} className="flex justify-center max-w-88 m-auto">
               <input type="text" ref={inputRef} placeholder="e.g. margarita" className="input mr-2 mb-6" />
-              <button type="submit" className="btn btn-primary mb-6">Get Cocktail</button>
+              <button type="submit" className="btn btn-primary mb-6">Pour it up!</button>
             </form>
           </div>
         </div>
       </div>
+      {/* <img src={drinkPic} /> */}
 
       <div className="card lg:card-side bg-base-100 shadow-sm">
         <figure>
