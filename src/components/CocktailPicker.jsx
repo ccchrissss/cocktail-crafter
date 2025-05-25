@@ -21,6 +21,10 @@ const CocktailPicker = () => {
     return array.filter(innerArray => innerArray[position1].includes(element) == true && innerArray[position2] !== null);
   }
 
+  const roundToNearestQuarter = (num) => {
+    return Math.round(num * 4) / 4
+  }
+
   const getDrink = () => {
     // console.log('getDrink')
     // console.log(inputRef.current.value)
@@ -89,12 +93,12 @@ const CocktailPicker = () => {
           <h3 className="font-bold">Ingredients</h3>
           <ul>
             {ingredientsArr.map( (e, i) => (
-              <li key={`ingredient-${i}`}>{measuresArr[i] ? measuresArr[i][1] + ' ' : ''}{e[1]}</li>
+              <li key={`ingredient-${i}`}>
+                { measuresArr[i] ? measuresArr[i][1].toLowerCase().includes(' cl') ? `${roundToNearestQuarter((measuresArr[i][1].split(' ')[0] * 0.33814))} oz `
+                  : measuresArr[i][1].toLowerCase().includes(' ml') ? `${roundToNearestQuarter(measuresArr[i][1].split(' ')[0] * 0.033814)} oz `
+                  : measuresArr[i][1] + ' ' : ''}{e[1]}
+              </li>
             ))}
-            {/* <li>{ingredientsArr}</li> */}
-            {/* <li>Ingredient</li>
-            <li>Ingredient</li>
-            <li>Ingredient</li> */}
           </ul>
           <h3 className="font-bold">Instructions</h3>
           <p>{instructions}</p>
