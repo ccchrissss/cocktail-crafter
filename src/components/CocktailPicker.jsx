@@ -8,6 +8,7 @@ const CocktailPicker = () => {
   const [drinkName, setDrinkName] = useState(null)
   const [ingredientsArr, setIngredientsArr] = useState([])
   const [measuresArr, setMeasuresArr] = useState([])
+  const [instructions, setInstructions] = useState('')
 
 
   const handleSubmit = event => {
@@ -45,6 +46,7 @@ const CocktailPicker = () => {
             setDrinkImage(data.drinks[0].strDrinkThumb)
             setGlassType(data.drinks[0].strGlass)
             setDrinkName(data.drinks[0].strDrink)
+            setInstructions(data.drinks[0].strInstructions)
         })
   }
 
@@ -95,11 +97,7 @@ const CocktailPicker = () => {
             <li>Ingredient</li> */}
           </ul>
           <h3 className="font-bold">Instructions</h3>
-          <ol>
-            <li>Instruction</li>
-            <li>Instruction</li>
-            <li>Instruction</li>
-          </ol>
+          <p>{instructions}</p>
           {/* <div className="card-actions justify-end">
             <button className="btn btn-primary">Listen</button>
           </div> */}
