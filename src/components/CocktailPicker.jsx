@@ -87,11 +87,6 @@ const CocktailPicker = () => {
 
       {showCocktailCard && 
         <div className="card lg:card-side bg-base-100 shadow-sm">
-          <figure>
-            <img
-              src={drinkImage}
-              alt="cocktail" />
-          </figure>
           <div className="card-body">
             <h2 className="card-title">{drinkName}</h2>
             <p className="italic">{glassType}</p>
@@ -111,6 +106,11 @@ const CocktailPicker = () => {
               <button className="btn btn-primary">Listen</button>
             </div> */}
           </div>
+          <figure className="lg:order-first">
+            <img
+              src={drinkImage}
+              alt="cocktail" />
+          </figure>
         </div>
       }
       
