@@ -3,12 +3,14 @@ import { useState, useRef } from 'react'
 
 const CocktailPicker = () => {
   const inputRef = useRef()
+  const [showCocktailCard, setshowCocktailCard] = useState(false)
   const [drinkImage, setDrinkImage] = useState(null)
   const [glassType, setGlassType] = useState(null)
   const [drinkName, setDrinkName] = useState(null)
   const [ingredientsArr, setIngredientsArr] = useState([])
   const [measuresArr, setMeasuresArr] = useState([])
   const [instructions, setInstructions] = useState('')
+
 
 
   const handleSubmit = event => {
@@ -34,6 +36,8 @@ const CocktailPicker = () => {
     fetch(`https://thecocktaildb.com/api/json/v1/1/search.php?s=${drink}`)
         .then(res => res.json())
         .then(data => {
+
+            setshowCocktailCard(true)
             console.log(data)
             console.log(data.drinks[0].strDrink)
             console.log(data.drinks[0].strGlass)
@@ -81,32 +85,35 @@ const CocktailPicker = () => {
       </div>
       {/* <img src={drinkPic} /> */}
 
-      <div className="card lg:card-side bg-base-100 shadow-sm">
-        <figure>
-          <img
-            src={drinkImage}
-            alt="cocktail" />
-        </figure>
-        <div className="card-body">
-          <h2 className="card-title">{drinkName}</h2>
-          <p className="italic">{glassType}</p>
-          <h3 className="font-bold">Ingredients</h3>
-          <ul>
-            {ingredientsArr.map( (e, i) => (
-              <li key={`ingredient-${i}`}>
-                { measuresArr[i] ? measuresArr[i][1].toLowerCase().includes(' cl') ? `${roundToNearestQuarter((measuresArr[i][1].split(' ')[0] * 0.33814))} oz `
-                  : measuresArr[i][1].toLowerCase().includes(' ml') ? `${roundToNearestQuarter(measuresArr[i][1].split(' ')[0] * 0.033814)} oz `
-                  : measuresArr[i][1] + ' ' : ''}{e[1]}
-              </li>
-            ))}
-          </ul>
-          <h3 className="font-bold">Instructions</h3>
-          <p>{instructions}</p>
-          {/* <div className="card-actions justify-end">
-            <button className="btn btn-primary">Listen</button>
-          </div> */}
+      {showCocktailCard && 
+        <div className="card lg:card-side bg-base-100 shadow-sm">
+          <figure>
+            <img
+              src={drinkImage}
+              alt="cocktail" />
+          </figure>
+          <div className="card-body">
+            <h2 className="card-title">{drinkName}</h2>
+            <p className="italic">{glassType}</p>
+            <h3 className="font-bold">Ingredients</h3>
+            <ul>
+              {ingredientsArr.map( (e, i) => (
+                <li key={`ingredient-${i}`}>
+                  { measuresArr[i] ? measuresArr[i][1].toLowerCase().includes(' cl') ? `${roundToNearestQuarter((measuresArr[i][1].split(' ')[0] * 0.33814))} oz `
+                    : measuresArr[i][1].toLowerCase().includes(' ml') ? `${roundToNearestQuarter(measuresArr[i][1].split(' ')[0] * 0.033814)} oz `
+                    : measuresArr[i][1] + ' ' : ''}{e[1]}
+                </li>
+              ))}
+            </ul>
+            <h3 className="font-bold">Instructions</h3>
+            <p>{instructions}</p>
+            {/* <div className="card-actions justify-end">
+              <button className="btn btn-primary">Listen</button>
+            </div> */}
+          </div>
         </div>
-      </div>
+      }
+      
     </>
   )
 
