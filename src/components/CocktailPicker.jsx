@@ -1,22 +1,37 @@
 import cocktailInHand from '../assets/cocktail-in-hand-table.jpg'
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 
 const CocktailPicker = () => {
   const inputRef = useRef()
-  const [showCocktailCard, setshowCocktailCard] = useState(false)
+  const [showCocktailCard, setShowCocktailCard] = useState(false)
   const [drinkImage, setDrinkImage] = useState(null)
   const [glassType, setGlassType] = useState(null)
   const [drinkName, setDrinkName] = useState(null)
   const [ingredientsArr, setIngredientsArr] = useState([])
   const [measuresArr, setMeasuresArr] = useState([])
   const [instructions, setInstructions] = useState('')
+  const cocktailCard = useRef(null)
 
 
+  // Add fetch into here. It's supposed to be inside a useEffect hook.
+  useEffect(() => {
+    console.log('use effect')
+    scrollToCocktailCard()
+  },
+  [drinkName])
 
   const handleSubmit = event => {
     event.preventDefault()
     // console.log('handleSubmit')
     getDrink()
+  }
+
+  const scrollToCocktailCard = () => {
+    // console.log('scroll to cocktail card')
+    cocktailCard.current?.scrollIntoView({
+      block: 'start',
+      behavior: 'smooth'
+    })
   }
 
   const filterByPosition = (array, element, position1, position2) => {
@@ -37,19 +52,20 @@ const CocktailPicker = () => {
         .then(res => res.json())
         .then(data => {
 
-            setshowCocktailCard(true)
-            console.log(data)
-            console.log(data.drinks[0].strDrink)
-            console.log(data.drinks[0].strGlass)
-            console.log(data.drinks[0].strInstructions)
-            console.log(data.drinks[0].strIngredient)
+            setShowCocktailCard(true)
+
+            // console.log(data)
+            // console.log(data.drinks[0].strDrink)
+            // console.log(data.drinks[0].strGlass)
+            // console.log(data.drinks[0].strInstructions)
+            // console.log(data.drinks[0].strIngredient)
 
             // this iterates through the data.drinks[0] array (the first drink Object in the array of drinks. The array of drinks is comprised of variations on the standard version of that drink if available). It then creates a 2d array of keys that contain the word 'Ingredient' and their corresponding values 
             setIngredientsArr(filterByPosition(Object.entries(data.drinks[0]), 'Ingredient', 0, 1))
             setMeasuresArr(filterByPosition(Object.entries(data.drinks[0]), 'Measure', 0, 1))
 
-            console.log(ingredientsArr)
-            console.log(measuresArr)
+            // console.log(ingredientsArr)
+            // console.log(measuresArr)
 
             setDrinkImage(data.drinks[0].strDrinkThumb)
             setGlassType(data.drinks[0].strGlass)
@@ -86,7 +102,7 @@ const CocktailPicker = () => {
       {/* <img src={drinkPic} /> */}
 
       {showCocktailCard && 
-        <div className="card lg:card-side bg-base-100 shadow-sm">
+        <div ref={cocktailCard} className="card lg:card-side bg-base-100 shadow-sm">
           <div className="card-body">
             <h2 className="card-title">{drinkName}</h2>
             <p className="italic">{glassType}</p>
