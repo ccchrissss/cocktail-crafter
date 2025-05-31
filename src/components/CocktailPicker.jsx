@@ -15,10 +15,8 @@ const CocktailPicker = () => {
 
   // Add fetch into here. It's supposed to be inside a useEffect hook.
   useEffect(() => {
-    console.log('use effect')
     scrollToCocktailCard()
-  },
-  [drinkName])
+  }, [drinkName])
 
   const handleSubmit = event => {
     event.preventDefault()
@@ -42,36 +40,30 @@ const CocktailPicker = () => {
     return Math.round(num * 4) / 4
   }
 
-  const getDrink = () => {
+  const getDrink = async () => {
     // console.log('getDrink')
     // console.log(inputRef.current.value)
     
-    const drink = inputRef.current.value
+    try {
+      const drink = inputRef.current.value
+      const response = await fetch(`https://thecocktaildb.com/api/json/v1/1/search.php?s=${drink}`)
+      const data = await response.json()
 
-    fetch(`https://thecocktaildb.com/api/json/v1/1/search.php?s=${drink}`)
-        .then(res => res.json())
-        .then(data => {
+      data.drinks !== null ? setShowCocktailCard(true) : setShowCocktailCard(false)
 
-            setShowCocktailCard(true)
+      //         // this iterates through the data.drinks[0] array (the first drink Object in the array of drinks. The array of drinks is comprised of variations on the standard version of that drink if available). It then creates a 2d array of keys that contain the word 'Ingredient' and their corresponding values 
+      setIngredientsArr(filterByPosition(Object.entries(data.drinks[0]), 'Ingredient', 0, 1))
+      setMeasuresArr(filterByPosition(Object.entries(data.drinks[0]), 'Measure', 0, 1))
 
-            // console.log(data)
-            // console.log(data.drinks[0].strDrink)
-            // console.log(data.drinks[0].strGlass)
-            // console.log(data.drinks[0].strInstructions)
-            // console.log(data.drinks[0].strIngredient)
+      setDrinkImage(data.drinks[0].strDrinkThumb)
+      setGlassType(data.drinks[0].strGlass)
+      setDrinkName(data.drinks[0].strDrink)
+      setInstructions(data.drinks[0].strInstructions)
 
-            // this iterates through the data.drinks[0] array (the first drink Object in the array of drinks. The array of drinks is comprised of variations on the standard version of that drink if available). It then creates a 2d array of keys that contain the word 'Ingredient' and their corresponding values 
-            setIngredientsArr(filterByPosition(Object.entries(data.drinks[0]), 'Ingredient', 0, 1))
-            setMeasuresArr(filterByPosition(Object.entries(data.drinks[0]), 'Measure', 0, 1))
+    } catch (err) {
+      console.log('Error: ', err)
+    }
 
-            // console.log(ingredientsArr)
-            // console.log(measuresArr)
-
-            setDrinkImage(data.drinks[0].strDrinkThumb)
-            setGlassType(data.drinks[0].strGlass)
-            setDrinkName(data.drinks[0].strDrink)
-            setInstructions(data.drinks[0].strInstructions)
-        })
   }
 
   return (
