@@ -16,40 +16,42 @@ const FeaturedCocktails = () => {
       <h3>Featured Cocktails</h3>
       <div className="carousel carousel-center rounded-box max-h-60">
         <div className="carousel-item max-w-[240px] py-3 px-3 pl-3">
-          <img className="mx-auto" src={garibaldiNegroni} alt="Garibaldi Negroni" />
+          <img className="mx-auto rounded-md"
+            src={garibaldiNegroni}
+            alt="Garibaldi Negroni" />
         </div>
         <div className="carousel-item max-w-[240px] py-3 px-3">
-          <img className="mx-auto"
+          <img className="mx-auto rounded-md"
             src={grimReaper}
             alt="Grim Reaper" />
         </div>
         <div className="carousel-item max-w-[240px] py-3 px-3">
-          <img className="mx-auto"
+          <img className="mx-auto rounded-md"
             src={b52}
             alt="B 52" />
         </div>
         <div className="carousel-item max-w-[240px] py-3 px-3">
-          <img className="mx-auto"
+          <img className="mx-auto rounded-md"
               src={ginLemon}
               alt="Gin Lemon" />
         </div>
         <div className="carousel-item max-w-[240px] py-3 px-3">
-          <img className="mx-auto"
+          <img className="mx-auto rounded-md"
             src={greyhound}
             alt="Greyhound" />
         </div>
         <div className="carousel-item max-w-[240px] py-3 px-3">
-          <img className="mx-auto"
+          <img className="mx-auto rounded-md"
               src={mountainBramble}
               alt="Mountain Bramble" />
         </div>
         <div className="carousel-item max-w-[240px] py-3 px-3">
-          <img className="mx-auto"
+          <img className="mx-auto rounded-md"
               src={thePhilosopher}
               alt="The Philosopher" />
         </div>
         <div className="carousel-item max-w-[240px] py-3 px-3">
-          <img className="mx-auto"
+          <img className="mx-auto rounded-md"
             src={vampiro}
             alt="Vampiro" />
         </div>
