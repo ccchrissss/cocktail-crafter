@@ -7,14 +7,30 @@ import mountainBramble from '../assets/featured-cocktails/mountain-bramble.jpeg'
 import thePhilosopher from '../assets/featured-cocktails/the-philosopher.jpeg'
 import vampiro from '../assets/featured-cocktails/vampiro.jpeg'
 
+import { useRef } from 'react'
+
 
 const FeaturedCocktails = () => {
+  
+  const carouselRef = useRef(null)
 
+  const handleClick = direction => {
+    // carouselRef.scroll(100,0)
+
+    carouselRef.current.scrollBy({
+      left: direction * 240,
+      behavior: 'smooth',
+    })
+  }
 
   return (
     <>
-      <h3>Featured Cocktails</h3>
-      <div className="carousel carousel-center rounded-box max-h-60">
+      <h3 className="p-6 text-xl">Featured Cocktails</h3>
+      <div ref={carouselRef} className="carousel carousel-center rounded-box max-h-60">
+        <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
+          <a className="btn btn-circle" onClick={() => handleClick(-1)}>❮</a>
+          <a className="btn btn-circle" onClick={() => handleClick(1)}>❯</a>
+        </div>
         <div className="carousel-item max-w-[240px] py-3 px-3 pl-3">
           <img className="mx-auto rounded-md"
             src={garibaldiNegroni}
