@@ -1,38 +1,60 @@
+import garibaldiNegroni from '../assets/featured-cocktails/garibaldi-negroni.jpeg'
+import grimReaper from '../assets/featured-cocktails/grim-reaper.jpeg'
+import b52 from '../assets/featured-cocktails/b-52.jpeg'
+import ginLemon from '../assets/featured-cocktails/gin-lemon.jpeg'
+import greyhound from '../assets/featured-cocktails/greyhound.jpeg'
+import mountainBramble from '../assets/featured-cocktails/mountain-bramble.jpeg'
+import thePhilosopher from '../assets/featured-cocktails/the-philosopher.jpeg'
+import vampiro from '../assets/featured-cocktails/vampiro.jpeg'
+
+
 const FeaturedCocktails = () => {
 
 
   return (
-    <div className="carousel carousel-center rounded-box">
-      <div className="carousel-item">
-        <img src="https://img.daisyui.com/images/stock/photo-1559703248-dcaaec9fab78.webp" alt="Pizza" />
+    <>
+      <h3>Featured Cocktails</h3>
+      <div className="carousel carousel-center rounded-box max-h-60">
+        <div className="carousel-item max-w-[240px] py-3 px-3 pl-3">
+          <img className="mx-auto" src={garibaldiNegroni} alt="Garibaldi Negroni" />
+        </div>
+        <div className="carousel-item max-w-[240px] py-3 px-3">
+          <img className="mx-auto"
+            src={grimReaper}
+            alt="Grim Reaper" />
+        </div>
+        <div className="carousel-item max-w-[240px] py-3 px-3">
+          <img className="mx-auto"
+            src={b52}
+            alt="B 52" />
+        </div>
+        <div className="carousel-item max-w-[240px] py-3 px-3">
+          <img className="mx-auto"
+              src={ginLemon}
+              alt="Gin Lemon" />
+        </div>
+        <div className="carousel-item max-w-[240px] py-3 px-3">
+          <img className="mx-auto"
+            src={greyhound}
+            alt="Greyhound" />
+        </div>
+        <div className="carousel-item max-w-[240px] py-3 px-3">
+          <img className="mx-auto"
+              src={mountainBramble}
+              alt="Mountain Bramble" />
+        </div>
+        <div className="carousel-item max-w-[240px] py-3 px-3">
+          <img className="mx-auto"
+              src={thePhilosopher}
+              alt="The Philosopher" />
+        </div>
+        <div className="carousel-item max-w-[240px] py-3 px-3">
+          <img className="mx-auto"
+            src={vampiro}
+            alt="Vampiro" />
+        </div>
       </div>
-      <div className="carousel-item">
-        <img
-          src="https://img.daisyui.com/images/stock/photo-1565098772267-60af42b81ef2.webp"
-          alt="Pizza" />
-      </div>
-      <div className="carousel-item">
-        <img
-          src="https://img.daisyui.com/images/stock/photo-1572635148818-ef6fd45eb394.webp"
-          alt="Pizza" />
-      </div>
-      <div className="carousel-item">
-        <img
-          src="https://img.daisyui.com/images/stock/photo-1494253109108-2e30c049369b.webp"
-          alt="Pizza" />
-      </div>
-      <div className="carousel-item">
-        <img src="https://img.daisyui.com/images/stock/photo-1550258987-190a2d41a8ba.webp" alt="Pizza" />
-      </div>
-      <div className="carousel-item">
-        <img src="https://img.daisyui.com/images/stock/photo-1559181567-c3190ca9959b.webp" alt="Pizza" />
-      </div>
-      <div className="carousel-item">
-        <img
-          src="https://img.daisyui.com/images/stock/photo-1601004890684-d8cbf643f5f2.webp"
-          alt="Pizza" />
-      </div>
-    </div>
+    </>
   )
 }
 
