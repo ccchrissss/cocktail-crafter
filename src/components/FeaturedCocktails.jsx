@@ -32,10 +32,15 @@ const FeaturedCocktails = () => {
             <a className="btn btn-square" onClick={() => handleClick(-1)}>❮</a>
             <a className="btn btn-circle" onClick={() => handleClick(1)}>❯</a>
           </div> */}
-          <div className="carousel-item max-w-[240px] py-3 px-3 pl-3">
-            <img className="mx-auto rounded-md"
+          <div className="carousel-item relative max-w-[240px] py-3 px-3 group">
+            <img
+              className="mx-auto rounded-md"
               src={garibaldiNegroni}
-              alt="Garibaldi Negroni" />
+              alt="Garibaldi Negroni"
+            />
+            <div className="absolute w-[216px] bottom-[25%] h-[15%] mx-3 flex justify-center items-center bg-black/50 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <h3 className="cursor-pointer">Garibaldi Negroni</h3>
+            </div>
           </div>
           <div className="carousel-item max-w-[240px] py-3 px-3">
             <img className="mx-auto rounded-md"
