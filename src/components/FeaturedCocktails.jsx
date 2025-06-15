@@ -27,7 +27,7 @@ const FeaturedCocktails = () => {
     <>
       <h3 className="p-6 text-xl">Featured Cocktails</h3>
       <div className="relative group/arrow-btns">
-        <div ref={carouselRef} className="relative carousel carousel-center rounded-box max-h-60">
+        <div ref={carouselRef} className="relative carousel carousel-center rounded-box max-h-60 md:mx-6">
           {/* <div className="top-1/2 absolute left-5 right-5 flex transform justify-between ">
             <a className="btn btn-square" onClick={() => handleClick(-1)}>❮</a>
             <a className="btn btn-circle" onClick={() => handleClick(1)}>❯</a>
