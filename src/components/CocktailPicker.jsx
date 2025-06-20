@@ -1,7 +1,8 @@
 import cocktailInHand from '../assets/cocktail-in-hand-table.jpg'
 import { useState, useRef, useEffect } from 'react'
 
-const CocktailPicker = () => {
+const CocktailPicker = ({ featuredCocktailToGet }) => {
+
   const inputRef = useRef()
   const [showCocktailCard, setShowCocktailCard] = useState(false)
   const [drinkImage, setDrinkImage] = useState(null)
@@ -12,6 +13,12 @@ const CocktailPicker = () => {
   const [instructions, setInstructions] = useState('')
   const cocktailCard = useRef(null)
 
+
+  useEffect(() => {
+    // console.log('component rerendered')
+
+    getFeaturedCocktail(featuredCocktailToGet)
+  }, [featuredCocktailToGet])
 
   // Add fetch into here. It's supposed to be inside a useEffect hook.
   useEffect(() => {
@@ -41,12 +48,40 @@ const CocktailPicker = () => {
   }
 
   const getDrink = async () => {
-    // console.log('getDrink')
-    // console.log(inputRef.current.value)
     
     try {
+
       const drink = inputRef.current.value
       const response = await fetch(`https://thecocktaildb.com/api/json/v1/1/search.php?s=${drink}`)
+      const data = await response.json()
+
+      data.drinks !== null ? setShowCocktailCard(true) : setShowCocktailCard(false)
+
+      //         // this iterates through the data.drinks[0] array (the first drink Object in the array of drinks. The array of drinks is comprised of variations on the standard version of that drink if available). It then creates a 2d array of keys that contain the word 'Ingredient' and their corresponding values 
+      setIngredientsArr(filterByPosition(Object.entries(data.drinks[0]), 'Ingredient', 0, 1))
+      setMeasuresArr(filterByPosition(Object.entries(data.drinks[0]), 'Measure', 0, 1))
+
+      setDrinkImage(data.drinks[0].strDrinkThumb)
+      setGlassType(data.drinks[0].strGlass)
+      setDrinkName(data.drinks[0].strDrink)
+      setInstructions(data.drinks[0].strInstructions)
+
+      console.log('fc to get in get drink() BEFORE: ', featuredCocktailToGet)
+      featuredCocktailToGet = drink
+      console.log('fc to get in get drink() AFTER: ', featuredCocktailToGet)
+
+    } catch (err) {
+      console.log('Error: ', err)
+    }
+  }
+
+  const getFeaturedCocktail = async (featuredCocktail) => {
+
+    console.log('featuredCocktail: ', featuredCocktail)
+    
+    try {
+
+      const response = await fetch(`https://thecocktaildb.com/api/json/v1/1/search.php?s=${featuredCocktail}`)
       const data = await response.json()
 
       data.drinks !== null ? setShowCocktailCard(true) : setShowCocktailCard(false)
@@ -65,6 +100,8 @@ const CocktailPicker = () => {
     }
 
   }
+
+
 
   return (
     <>

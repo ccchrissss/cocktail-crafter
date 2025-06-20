@@ -10,7 +10,7 @@ import vampiro from '../assets/featured-cocktails/vampiro.jpeg'
 import { useRef } from 'react'
 
 
-const FeaturedCocktails = () => {
+const FeaturedCocktails = ({ handleGreyhoundClick, handleVampiroClick }) => {
   
   const carouselRef = useRef(null)
 
@@ -22,6 +22,10 @@ const FeaturedCocktails = () => {
       behavior: 'smooth',
     })
   }
+
+  // const handleFeaturedCocktailClick = () => {
+  //   console.log('handle featured cocktail click')
+  // }
 
   return (
     <>
@@ -35,7 +39,7 @@ const FeaturedCocktails = () => {
           <div className="carousel-item max-w-[240px] py-3 px-3">
             <div className="absolute peer w-[216px] bottom-3 h-[25%] mx-3 flex justify-center items-center text-l font text-white rounded-b-md border-t-1 border-white backdrop-brightness-87 font-medium backdrop-blur-[5px]">
               <h3 className="cursor-pointer">
-              <a className="link link-hover">Greyhound</a></h3>
+              <a className="link link-hover" onClick={handleGreyhoundClick}>Greyhound</a></h3>
             </div>
             <img className="mx-auto rounded-md hover:shadow-[0_5px_7px_rgba(0,0,0,0.3)] peer-hover:shadow-[0_5px_7px_rgba(0,0,0,0.3)] transition duration-300 ease-in-out"
               src={greyhound}
@@ -44,7 +48,7 @@ const FeaturedCocktails = () => {
           <div className="carousel-item max-w-[240px] py-3 px-3">
             <div className="absolute peer w-[216px] bottom-3 h-[25%] mx-3 flex justify-center items-center text-l font text-white rounded-b-md border-t-1 border-white backdrop-brightness-87 font-medium backdrop-blur-[5px]">
               <h3 className="cursor-pointer">
-              <a className="link link-hover">Vampiro</a></h3>
+              <a className="link link-hover" onClick={handleVampiroClick}>Vampiro</a></h3>
             </div>
             <img className="mx-auto rounded-md hover:shadow-[0_5px_7px_rgba(0,0,0,0.3)] peer-hover:shadow-[0_5px_7px_rgba(0,0,0,0.3)] transition duration-300 ease-in-out"
               src={vampiro}
