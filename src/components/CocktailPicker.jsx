@@ -1,9 +1,11 @@
 import cocktailInHand from '../assets/cocktail-in-hand-table.jpg'
 import { useState, useRef, useEffect } from 'react'
 
-const CocktailPicker = ({ featuredCocktailToGet }) => {
+const CocktailPicker = ({ featuredCocktailToGet, featuredCocktailTrigger }) => {
 
   const inputRef = useRef()
+  const [currentlyDisplayedDrink, setCurrentlyDisplayedDrink] = useState(null)
+  const [currentFeaturedCocktail, setCurrentFeaturedCocktail] = useState(featuredCocktailToGet)
   const [showCocktailCard, setShowCocktailCard] = useState(false)
   const [drinkImage, setDrinkImage] = useState(null)
   const [glassType, setGlassType] = useState(null)
@@ -18,7 +20,28 @@ const CocktailPicker = ({ featuredCocktailToGet }) => {
     // console.log('component rerendered')
 
     getFeaturedCocktail(featuredCocktailToGet)
-  }, [featuredCocktailToGet])
+  }, [featuredCocktailTrigger])
+
+  // useEffect(() => {
+  //   // console.log('component rerendered')
+
+  //   setCurrentFeaturedCocktail(featuredCocktailToGet)
+  //   // setCurrentlyDisplayedDrink(featuredCocktailToGet)
+  //   // console.log('ran useEffect with dep - featuredCocktailToGet')
+  // }, [featuredCocktailToGet])
+
+  // useEffect(() => {
+  //   // console.log('component rerendered')
+
+  //   setCurrentlyDisplayedDrink(currentFeaturedCocktail)
+  //   setCurrentFeaturedCocktail(null)
+  // }, [currentFeaturedCocktail])
+
+  useEffect(() => {
+
+    getDrink(currentlyDisplayedDrink)
+    // console.log('ran useEffect with dep - currentlyDisplayedDrink')
+  }, [currentlyDisplayedDrink])
 
   // Add fetch into here. It's supposed to be inside a useEffect hook.
   useEffect(() => {
@@ -28,7 +51,7 @@ const CocktailPicker = ({ featuredCocktailToGet }) => {
   const handleSubmit = event => {
     event.preventDefault()
     // console.log('handleSubmit')
-    getDrink()
+    getDrink(inputRef.current.value)
   }
 
   const scrollToCocktailCard = () => {
@@ -47,11 +70,11 @@ const CocktailPicker = ({ featuredCocktailToGet }) => {
     return Math.round(num * 4) / 4
   }
 
-  const getDrink = async () => {
+  const getDrink = async (drink) => {
     
     try {
 
-      const drink = inputRef.current.value
+      // const drink = inputRef.current.value
       const response = await fetch(`https://thecocktaildb.com/api/json/v1/1/search.php?s=${drink}`)
       const data = await response.json()
 
@@ -66,9 +89,10 @@ const CocktailPicker = ({ featuredCocktailToGet }) => {
       setDrinkName(data.drinks[0].strDrink)
       setInstructions(data.drinks[0].strInstructions)
 
-      console.log('fc to get in get drink() BEFORE: ', featuredCocktailToGet)
-      featuredCocktailToGet = drink
-      console.log('fc to get in get drink() AFTER: ', featuredCocktailToGet)
+      setCurrentlyDisplayedDrink(data.drinks[0].strDrink)
+      // console.log('fc to get in get drink() BEFORE: ', featuredCocktailToGet)
+      // featuredCocktailToGet = drink
+      // console.log('fc to get in get drink() AFTER: ', featuredCocktailToGet)
 
     } catch (err) {
       console.log('Error: ', err)

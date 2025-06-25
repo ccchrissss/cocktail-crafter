@@ -8,19 +8,24 @@ import { useState } from 'react'
 
 function App() {
   const [featuredCocktailToGet, setFeaturedCocktailToGet] = useState(null)
+  const [featuredCocktailTrigger, setFeaturedCocktailTrigger] = useState(true)
 
 
   const testCocktail = (beverage) => {
     // console.log('hi test cocktail')
 
     setFeaturedCocktailToGet(beverage)
-    console.log('testCocktail(): ', featuredCocktailToGet)
+    setFeaturedCocktailTrigger(!featuredCocktailTrigger)
+    // console.log('testCocktail(): ', featuredCocktailToGet)
   }
 
   return (
     <>
       <Header />
-      <CocktailPicker featuredCocktailToGet={featuredCocktailToGet}  />
+      <CocktailPicker 
+        featuredCocktailToGet={featuredCocktailToGet} 
+        featuredCocktailTrigger={featuredCocktailTrigger} 
+      />
       <FeaturedCocktails 
         handleGreyhoundClick={() => testCocktail('greyhound')}
         handleVampiroClick={() => testCocktail('vampiro')}
