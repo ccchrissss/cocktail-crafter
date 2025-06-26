@@ -4,8 +4,8 @@ import { useState, useRef, useEffect } from 'react'
 const CocktailPicker = ({ featuredCocktailToGet, featuredCocktailTrigger }) => {
 
   const inputRef = useRef()
-  const [currentlyDisplayedDrink, setCurrentlyDisplayedDrink] = useState(null)
-  const [currentFeaturedCocktail, setCurrentFeaturedCocktail] = useState(featuredCocktailToGet)
+  // const [currentlyDisplayedDrink, setCurrentlyDisplayedDrink] = useState(null)
+  // const [currentFeaturedCocktail, setCurrentFeaturedCocktail] = useState(featuredCocktailToGet)
   const [showCocktailCard, setShowCocktailCard] = useState(false)
   const [drinkImage, setDrinkImage] = useState(null)
   const [glassType, setGlassType] = useState(null)
@@ -37,16 +37,14 @@ const CocktailPicker = ({ featuredCocktailToGet, featuredCocktailTrigger }) => {
   //   setCurrentFeaturedCocktail(null)
   // }, [currentFeaturedCocktail])
 
-  useEffect(() => {
+  // useEffect(() => {
 
-    getDrink(currentlyDisplayedDrink)
-    // console.log('ran useEffect with dep - currentlyDisplayedDrink')
-  }, [currentlyDisplayedDrink])
+  //   getDrink(currentlyDisplayedDrink)
+  //   // console.log('ran useEffect with dep - currentlyDisplayedDrink')
+  // }, [currentlyDisplayedDrink])
 
-  // Add fetch into here. It's supposed to be inside a useEffect hook.
-  useEffect(() => {
-    scrollToCocktailCard()
-  }, [drinkName])
+  // Add fetch into a useEffect hook. it's supposed to be inside a useEffect hook.
+
 
   const handleSubmit = event => {
     event.preventDefault()
@@ -55,7 +53,8 @@ const CocktailPicker = ({ featuredCocktailToGet, featuredCocktailTrigger }) => {
   }
 
   const scrollToCocktailCard = () => {
-    // console.log('scroll to cocktail card')
+    console.log('scroll to cocktail card')
+    console.log(cocktailCard.current)
     cocktailCard.current?.scrollIntoView({
       block: 'start',
       behavior: 'smooth'
@@ -89,7 +88,9 @@ const CocktailPicker = ({ featuredCocktailToGet, featuredCocktailTrigger }) => {
       setDrinkName(data.drinks[0].strDrink)
       setInstructions(data.drinks[0].strInstructions)
 
-      setCurrentlyDisplayedDrink(data.drinks[0].strDrink)
+      scrollToCocktailCard()
+
+      // setCurrentlyDisplayedDrink(data.drinks[0].strDrink)
       // console.log('fc to get in get drink() BEFORE: ', featuredCocktailToGet)
       // featuredCocktailToGet = drink
       // console.log('fc to get in get drink() AFTER: ', featuredCocktailToGet)
@@ -101,7 +102,7 @@ const CocktailPicker = ({ featuredCocktailToGet, featuredCocktailTrigger }) => {
 
   const getFeaturedCocktail = async (featuredCocktail) => {
 
-    console.log('featuredCocktail: ', featuredCocktail)
+    // console.log('featuredCocktail: ', featuredCocktail)
     
     try {
 
@@ -118,6 +119,8 @@ const CocktailPicker = ({ featuredCocktailToGet, featuredCocktailTrigger }) => {
       setGlassType(data.drinks[0].strGlass)
       setDrinkName(data.drinks[0].strDrink)
       setInstructions(data.drinks[0].strInstructions)
+
+      scrollToCocktailCard()
 
     } catch (err) {
       console.log('Error: ', err)
