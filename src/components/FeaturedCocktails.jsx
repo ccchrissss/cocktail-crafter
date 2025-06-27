@@ -93,11 +93,11 @@ const FeaturedCocktails = ({ handleGreyhoundClick, handleVampiroClick, handleThe
           <div className="carousel-item max-w-[240px] py-3 px-3">
             <div className="absolute peer w-[216px] bottom-3 h-[25%] mx-3 flex justify-center items-center text-l font text-white rounded-b-md border-t-1 border-white backdrop-brightness-87 font-medium backdrop-blur-[5px]">
               <h3 className="cursor-pointer">
-              <a className="link link-hover" onClick={handleB52Click}>B 52</a></h3>
+              <a className="link link-hover" onClick={handleB52Click}>B-52</a></h3>
             </div>
             <img className="mx-auto rounded-md hover:shadow-[0_5px_7px_rgba(0,0,0,0.3)] peer-hover:shadow-[0_5px_7px_rgba(0,0,0,0.3)] transition duration-300 ease-in-out"
               src={b52}
-              alt="B 52" />
+              alt="B-52" />
           </div>
           <div className="carousel-item relative max-w-[240px] py-3 px-3">
             <div className="absolute peer w-[216px] bottom-3 h-[25%] mx-3 flex justify-center items-center text-l text-white rounded-b-md border-t-1 border-white backdrop-brightness-87 font-medium backdrop-blur-[5px]">

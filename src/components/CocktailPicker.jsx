@@ -52,14 +52,28 @@ const CocktailPicker = ({ featuredCocktailToGet, featuredCocktailTrigger }) => {
     getDrink(inputRef.current.value)
   }
 
-  const scrollToCocktailCard = () => {
-    console.log('scroll to cocktail card')
-    console.log(cocktailCard.current)
-    cocktailCard.current?.scrollIntoView({
-      block: 'start',
-      behavior: 'smooth'
-    })
-  }
+  useEffect(() => {
+    if (drinkName && cocktailCard.current) {
+      // console.log('scroll to cocktail card')
+      // console.log('cocktailCard.current.scrollHeight: ', cocktailCard.current.scrollHeight)
+      // console.log('cocktailcard bounding rect: ', cocktailCard.current.getBoundingClientRect())
+      cocktailCard.current?.scrollIntoView({
+        block: 'start',
+        behavior: 'smooth'
+      })
+    }
+  }, [drinkName])
+
+
+  // const scrollToCocktailCard = () => {
+  //   console.log('scroll to cocktail card')
+  //   // console.log('cocktailCard.current.scrollHeight: ', cocktailCard.current.scrollHeight)
+  //   console.log('cocktailcard bounding rect: ', cocktailCard.current.getBoundingClientRect())
+  //   cocktailCard.current?.scrollIntoView({
+  //     block: 'start',
+  //     behavior: 'smooth'
+  //   })
+  // }
 
   const filterByPosition = (array, element, position1, position2) => {
     return array.filter(innerArray => innerArray[position1].includes(element) == true && innerArray[position2] !== null);
@@ -88,7 +102,7 @@ const CocktailPicker = ({ featuredCocktailToGet, featuredCocktailTrigger }) => {
       setDrinkName(data.drinks[0].strDrink)
       setInstructions(data.drinks[0].strInstructions)
 
-      scrollToCocktailCard()
+      // scrollToCocktailCard()
 
       // setCurrentlyDisplayedDrink(data.drinks[0].strDrink)
       // console.log('fc to get in get drink() BEFORE: ', featuredCocktailToGet)
@@ -120,7 +134,7 @@ const CocktailPicker = ({ featuredCocktailToGet, featuredCocktailTrigger }) => {
       setDrinkName(data.drinks[0].strDrink)
       setInstructions(data.drinks[0].strInstructions)
 
-      scrollToCocktailCard()
+      // scrollToCocktailCard()
 
     } catch (err) {
       console.log('Error: ', err)
