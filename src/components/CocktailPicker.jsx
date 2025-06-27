@@ -13,6 +13,7 @@ const CocktailPicker = ({ featuredCocktailToGet, featuredCocktailTrigger }) => {
   const [ingredientsArr, setIngredientsArr] = useState([])
   const [measuresArr, setMeasuresArr] = useState([])
   const [instructions, setInstructions] = useState('')
+  const [scrollTrigger, setScrollTrigger] = useState(true)
   const cocktailCard = useRef(null)
 
 
@@ -62,7 +63,7 @@ const CocktailPicker = ({ featuredCocktailToGet, featuredCocktailTrigger }) => {
         behavior: 'smooth'
       })
     }
-  }, [drinkName])
+  }, [scrollTrigger])
 
 
   // const scrollToCocktailCard = () => {
@@ -102,6 +103,7 @@ const CocktailPicker = ({ featuredCocktailToGet, featuredCocktailTrigger }) => {
       setDrinkName(data.drinks[0].strDrink)
       setInstructions(data.drinks[0].strInstructions)
 
+      setScrollTrigger(!scrollTrigger)
       // scrollToCocktailCard()
 
       // setCurrentlyDisplayedDrink(data.drinks[0].strDrink)
@@ -134,6 +136,7 @@ const CocktailPicker = ({ featuredCocktailToGet, featuredCocktailTrigger }) => {
       setDrinkName(data.drinks[0].strDrink)
       setInstructions(data.drinks[0].strInstructions)
 
+      setScrollTrigger(!scrollTrigger)
       // scrollToCocktailCard()
 
     } catch (err) {
