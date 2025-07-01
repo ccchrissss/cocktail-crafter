@@ -198,7 +198,7 @@ const CocktailPicker = ({ featuredCocktailToGet, featuredCocktailTrigger }) => {
           <figure className="lg:order-first">
             <img
               src={drinkImage}
-              alt="cocktail" />
+              alt="cocktail" className="animate-fadeIn" />
           </figure>
         </div>
       }
