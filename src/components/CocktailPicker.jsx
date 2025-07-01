@@ -50,7 +50,7 @@ const CocktailPicker = ({ featuredCocktailToGet, featuredCocktailTrigger }) => {
   const handleSubmit = event => {
     event.preventDefault()
     // console.log('handleSubmit')
-    getDrink(inputRef.current.value)
+    inputRef.current.value !== '' ? getDrink(inputRef.current.value) : ''
   }
 
   useEffect(() => {
