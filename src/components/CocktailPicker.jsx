@@ -175,8 +175,8 @@ const CocktailPicker = ({ featuredCocktailToGet, featuredCocktailTrigger }) => {
       {/* <img src={drinkPic} /> */}
 
       {showCocktailCard && 
-        <div ref={cocktailCard} className="card lg:card-side bg-base-100 shadow-sm">
-          <div className="card-body">
+        <div ref={cocktailCard} className="card lg:card-side bg-base-100 shadow-sm md:flex-row md:flex-wrap md:w-full">
+          <div className="card-body border-5 border-double border-[#C9C9C9] rounded-md m-6 flex-col flex-1 md:max-w-1/2">
             <h2 className="card-title">{drinkName}</h2>
             <p className="italic">{glassType}</p>
             <h3 className="font-bold">Ingredients</h3>
@@ -195,10 +195,8 @@ const CocktailPicker = ({ featuredCocktailToGet, featuredCocktailTrigger }) => {
               <button className="btn btn-primary">Listen</button>
             </div> */}
           </div>
-          <figure className="lg:order-first">
-            <img
-              src={drinkImage}
-              alt="cocktail" />
+          <figure className="lg:order-first m-6 flex-col flex-1  md:max-w-1/2">
+            <img src={drinkImage} alt="cocktail" className="rounded-md" />
           </figure>
         </div>
       }
