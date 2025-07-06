@@ -195,7 +195,7 @@ const CocktailPicker = ({ featuredCocktailToGet, featuredCocktailTrigger }) => {
               <button className="btn btn-primary">Listen</button>
             </div> */}
           </div>
-          <figure className="lg:order-first m-6 flex-col flex-1  md:max-w-1/2">
+          <figure className="md:order-first m-6 flex-col flex-1  md:max-w-1/2">
             <img src={drinkImage} alt="cocktail" className="rounded-md" />
           </figure>
         </div>
