@@ -77,8 +77,34 @@ const CocktailPicker = ({ featuredCocktailToGet, featuredCocktailTrigger }) => {
   // }
 
   const filterByPosition = (array, element, position1, position2) => {
-    return array.filter(innerArray => innerArray[position1].includes(element) == true && innerArray[position2] !== null);
+    
+    const result = array.filter(innerArray => innerArray[position1].includes(element) == true && innerArray[position2] !== null);
+
+    return result
   }
+
+  const convertUnits = (arr) => {
+
+    const convertedArr = arr
+
+    for (let i = 0; i < convertedArr.length; i++) {
+      if (convertedArr[i][1].toLowerCase().includes(' cl')) {
+
+        convertedArr[i][1] = `${roundToNearestQuarter(convertedArr[i][1].split(' ')[0] * 0.33814)} oz `
+      } else if (convertedArr[i][1].toLowerCase().includes(' ml')) {
+
+        convertedArr[i][1] = `${roundToNearestQuarter(convertedArr[i][1].split(' ')[0] * 0.033814)} oz `
+      }
+    }
+
+    return convertedArr
+  }
+
+  const filterAndConvert = (array, element, position1, position2) => {
+
+    return convertUnits(filterByPosition(array, element, position1, position2))
+  }
+
 
   const roundToNearestQuarter = (num) => {
     return Math.round(num * 4) / 4
@@ -91,6 +117,8 @@ const CocktailPicker = ({ featuredCocktailToGet, featuredCocktailTrigger }) => {
       // const drink = inputRef.current.value
       const response = await fetch(`https://thecocktaildb.com/api/json/v1/1/search.php?s=${drink}`)
       const data = await response.json()
+
+      // console.log(data)
 
       data.drinks !== null ? setShowCocktailCard(true) : setShowCocktailCard(false)
 
@@ -128,8 +156,11 @@ const CocktailPicker = ({ featuredCocktailToGet, featuredCocktailTrigger }) => {
       data.drinks !== null ? setShowCocktailCard(true) : setShowCocktailCard(false)
 
       //         // this iterates through the data.drinks[0] array (the first drink Object in the array of drinks. The array of drinks is comprised of variations on the standard version of that drink if available). It then creates a 2d array of keys that contain the word 'Ingredient' and their corresponding values 
-      setIngredientsArr(filterByPosition(Object.entries(data.drinks[0]), 'Ingredient', 0, 1))
-      setMeasuresArr(filterByPosition(Object.entries(data.drinks[0]), 'Measure', 0, 1))
+
+      setIngredientsArr(filterAndConvert(Object.entries(data.drinks[0]), 'Ingredient', 0, 1))
+      setMeasuresArr(filterAndConvert(Object.entries(data.drinks[0]), 'Measure', 0, 1))
+      // setIngredientsArr(filterByPosition(Object.entries(data.drinks[0]), 'Ingredient', 0, 1))
+      // setMeasuresArr(filterByPosition(Object.entries(data.drinks[0]), 'Measure', 0, 1))
 
       setDrinkImage(data.drinks[0].strDrinkThumb)
       setGlassType(data.drinks[0].strGlass)
@@ -183,9 +214,19 @@ const CocktailPicker = ({ featuredCocktailToGet, featuredCocktailTrigger }) => {
             <ul>
               {ingredientsArr.map( (e, i) => (
                 <li key={`ingredient-${i}`}>
-                  { measuresArr[i] ? measuresArr[i][1].toLowerCase().includes(' cl') ? `${roundToNearestQuarter((measuresArr[i][1].split(' ')[0] * 0.33814))} oz `
+                  {measuresArr[i][1] + ' '}{e[1]}
+                  {/* {if (measuresArr[i]) {
+                    if (measuresArr[i][1].toLowerCase().includes(' cl')) {
+                      return `${roundToNearestQuarter((measuresArr[i][1].split(' ')[0] * 0.33814))} oz `
+                    } else if (measuresArr[i][1].toLowerCase().includes(' ml')) {
+                      return `${roundToNearestQuarter(measuresArr[i][1].split(' ')[0] * 0.033814)} oz `
+                    } else {
+                      return measuresArr[i][1] + ' '
+                    }
+                  }{e[1]} */}
+                  {/* { measuresArr[i] ? measuresArr[i][1].toLowerCase().includes(' cl') ? `${roundToNearestQuarter((measuresArr[i][1].split(' ')[0] * 0.33814))} oz `
                     : measuresArr[i][1].toLowerCase().includes(' ml') ? `${roundToNearestQuarter(measuresArr[i][1].split(' ')[0] * 0.033814)} oz `
-                    : measuresArr[i][1] + ' ' : ''}{e[1]}
+                    : measuresArr[i][1] + ' ' : ''}{e[1]} */}
                 </li>
               ))}
             </ul>
