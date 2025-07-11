@@ -80,6 +80,8 @@ const CocktailPicker = ({ featuredCocktailToGet, featuredCocktailTrigger }) => {
     
     const result = array.filter(innerArray => innerArray[position1].includes(element) == true && innerArray[position2] !== null);
 
+    // console.log(result)
+
     return result
   }
 
@@ -123,8 +125,8 @@ const CocktailPicker = ({ featuredCocktailToGet, featuredCocktailTrigger }) => {
       data.drinks !== null ? setShowCocktailCard(true) : setShowCocktailCard(false)
 
       //         // this iterates through the data.drinks[0] array (the first drink Object in the array of drinks. The array of drinks is comprised of variations on the standard version of that drink if available). It then creates a 2d array of keys that contain the word 'Ingredient' and their corresponding values 
-      setIngredientsArr(filterByPosition(Object.entries(data.drinks[0]), 'Ingredient', 0, 1))
-      setMeasuresArr(filterByPosition(Object.entries(data.drinks[0]), 'Measure', 0, 1))
+      setIngredientsArr(filterAndConvert(Object.entries(data.drinks[0]), 'Ingredient', 0, 1))
+      setMeasuresArr(filterAndConvert(Object.entries(data.drinks[0]), 'Measure', 0, 1))
 
       setDrinkImage(data.drinks[0].strDrinkThumb)
       setGlassType(data.drinks[0].strGlass)
@@ -214,7 +216,10 @@ const CocktailPicker = ({ featuredCocktailToGet, featuredCocktailTrigger }) => {
             <ul>
               {ingredientsArr.map( (e, i) => (
                 <li key={`ingredient-${i}`}>
-                  {measuresArr[i][1] + ' '}{e[1]}
+                  {measuresArr[i] ? measuresArr[i][1] + ' ' : ''}{e[1]}
+                  {/* this single line below works except for a ingredient like 'carbonated water' which has no measure */}
+                  {/* {measuresArr[i][1] + ' '}{e[1]} */}
+
                   {/* {if (measuresArr[i]) {
                     if (measuresArr[i][1].toLowerCase().includes(' cl')) {
                       return `${roundToNearestQuarter((measuresArr[i][1].split(' ')[0] * 0.33814))} oz `
