@@ -4,8 +4,6 @@ import { useState, useRef, useEffect } from 'react'
 const CocktailPicker = ({ featuredCocktailToGet, featuredCocktailTrigger }) => {
 
   const inputRef = useRef()
-  // const [currentlyDisplayedDrink, setCurrentlyDisplayedDrink] = useState(null)
-  // const [currentFeaturedCocktail, setCurrentFeaturedCocktail] = useState(featuredCocktailToGet)
   const [showCocktailCard, setShowCocktailCard] = useState(false)
   const [drinkImage, setDrinkImage] = useState(null)
   const [glassType, setGlassType] = useState(null)
@@ -23,37 +21,15 @@ const CocktailPicker = ({ featuredCocktailToGet, featuredCocktailTrigger }) => {
     getFeaturedCocktail(featuredCocktailToGet)
   }, [featuredCocktailTrigger])
 
-  // useEffect(() => {
-  //   // console.log('component rerendered')
-
-  //   setCurrentFeaturedCocktail(featuredCocktailToGet)
-  //   // setCurrentlyDisplayedDrink(featuredCocktailToGet)
-  //   // console.log('ran useEffect with dep - featuredCocktailToGet')
-  // }, [featuredCocktailToGet])
-
-  // useEffect(() => {
-  //   // console.log('component rerendered')
-
-  //   setCurrentlyDisplayedDrink(currentFeaturedCocktail)
-  //   setCurrentFeaturedCocktail(null)
-  // }, [currentFeaturedCocktail])
-
-  // useEffect(() => {
-
-  //   getDrink(currentlyDisplayedDrink)
-  //   // console.log('ran useEffect with dep - currentlyDisplayedDrink')
-  // }, [currentlyDisplayedDrink])
-
-  // Add fetch into a useEffect hook. it's supposed to be inside a useEffect hook.
-
-
   const handleSubmit = event => {
+
     event.preventDefault()
-    // console.log('handleSubmit')
+
     inputRef.current.value !== '' ? getDrink(inputRef.current.value) : ''
   }
 
   useEffect(() => {
+
     if (drinkName && cocktailCard.current) {
       // console.log('scroll to cocktail card')
       // console.log('cocktailCard.current.scrollHeight: ', cocktailCard.current.scrollHeight)
@@ -64,17 +40,6 @@ const CocktailPicker = ({ featuredCocktailToGet, featuredCocktailTrigger }) => {
       })
     }
   }, [scrollTrigger])
-
-
-  // const scrollToCocktailCard = () => {
-  //   console.log('scroll to cocktail card')
-  //   // console.log('cocktailCard.current.scrollHeight: ', cocktailCard.current.scrollHeight)
-  //   console.log('cocktailcard bounding rect: ', cocktailCard.current.getBoundingClientRect())
-  //   cocktailCard.current?.scrollIntoView({
-  //     block: 'start',
-  //     behavior: 'smooth'
-  //   })
-  // }
 
   const filterByPosition = (array, element, position1, position2) => {
     
@@ -107,8 +72,8 @@ const CocktailPicker = ({ featuredCocktailToGet, featuredCocktailTrigger }) => {
     return convertUnits(filterByPosition(array, element, position1, position2))
   }
 
-
   const roundToNearestQuarter = (num) => {
+    
     return Math.round(num * 4) / 4
   }
 
@@ -124,7 +89,7 @@ const CocktailPicker = ({ featuredCocktailToGet, featuredCocktailTrigger }) => {
 
       data.drinks !== null ? setShowCocktailCard(true) : setShowCocktailCard(false)
 
-      //         // this iterates through the data.drinks[0] array (the first drink Object in the array of drinks. The array of drinks is comprised of variations on the standard version of that drink if available). It then creates a 2d array of keys that contain the word 'Ingredient' and their corresponding values 
+      // this iterates through the data.drinks[0] array (the first drink Object in the array of drinks. The array of drinks is comprised of variations on the standard version of that drink if available). It then creates a 2d array of keys that contain the word 'Ingredient' and their corresponding values. It also converts them from metric to US Customary if needed.
       setIngredientsArr(filterAndConvert(Object.entries(data.drinks[0]), 'Ingredient', 0, 1))
       setMeasuresArr(filterAndConvert(Object.entries(data.drinks[0]), 'Measure', 0, 1))
 
@@ -134,12 +99,6 @@ const CocktailPicker = ({ featuredCocktailToGet, featuredCocktailTrigger }) => {
       setInstructions(data.drinks[0].strInstructions)
 
       setScrollTrigger(!scrollTrigger)
-      // scrollToCocktailCard()
-
-      // setCurrentlyDisplayedDrink(data.drinks[0].strDrink)
-      // console.log('fc to get in get drink() BEFORE: ', featuredCocktailToGet)
-      // featuredCocktailToGet = drink
-      // console.log('fc to get in get drink() AFTER: ', featuredCocktailToGet)
 
     } catch (err) {
       console.log('Error: ', err)
@@ -157,12 +116,8 @@ const CocktailPicker = ({ featuredCocktailToGet, featuredCocktailTrigger }) => {
 
       data.drinks !== null ? setShowCocktailCard(true) : setShowCocktailCard(false)
 
-      //         // this iterates through the data.drinks[0] array (the first drink Object in the array of drinks. The array of drinks is comprised of variations on the standard version of that drink if available). It then creates a 2d array of keys that contain the word 'Ingredient' and their corresponding values 
-
       setIngredientsArr(filterAndConvert(Object.entries(data.drinks[0]), 'Ingredient', 0, 1))
       setMeasuresArr(filterAndConvert(Object.entries(data.drinks[0]), 'Measure', 0, 1))
-      // setIngredientsArr(filterByPosition(Object.entries(data.drinks[0]), 'Ingredient', 0, 1))
-      // setMeasuresArr(filterByPosition(Object.entries(data.drinks[0]), 'Measure', 0, 1))
 
       setDrinkImage(data.drinks[0].strDrinkThumb)
       setGlassType(data.drinks[0].strGlass)
@@ -170,14 +125,12 @@ const CocktailPicker = ({ featuredCocktailToGet, featuredCocktailTrigger }) => {
       setInstructions(data.drinks[0].strInstructions)
 
       setScrollTrigger(!scrollTrigger)
-      // scrollToCocktailCard()
 
     } catch (err) {
       console.log('Error: ', err)
     }
 
   }
-
 
 
   return (
@@ -217,21 +170,6 @@ const CocktailPicker = ({ featuredCocktailToGet, featuredCocktailTrigger }) => {
               {ingredientsArr.map( (e, i) => (
                 <li key={`ingredient-${i}`}>
                   {measuresArr[i] ? measuresArr[i][1] + ' ' : ''}{e[1]}
-                  {/* this single line below works except for a ingredient like 'carbonated water' which has no measure */}
-                  {/* {measuresArr[i][1] + ' '}{e[1]} */}
-
-                  {/* {if (measuresArr[i]) {
-                    if (measuresArr[i][1].toLowerCase().includes(' cl')) {
-                      return `${roundToNearestQuarter((measuresArr[i][1].split(' ')[0] * 0.33814))} oz `
-                    } else if (measuresArr[i][1].toLowerCase().includes(' ml')) {
-                      return `${roundToNearestQuarter(measuresArr[i][1].split(' ')[0] * 0.033814)} oz `
-                    } else {
-                      return measuresArr[i][1] + ' '
-                    }
-                  }{e[1]} */}
-                  {/* { measuresArr[i] ? measuresArr[i][1].toLowerCase().includes(' cl') ? `${roundToNearestQuarter((measuresArr[i][1].split(' ')[0] * 0.33814))} oz `
-                    : measuresArr[i][1].toLowerCase().includes(' ml') ? `${roundToNearestQuarter(measuresArr[i][1].split(' ')[0] * 0.033814)} oz `
-                    : measuresArr[i][1] + ' ' : ''}{e[1]} */}
                 </li>
               ))}
             </ul>
