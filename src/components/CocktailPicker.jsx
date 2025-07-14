@@ -45,7 +45,7 @@ const CocktailPicker = ({ featuredCocktailToGet, featuredCocktailTrigger }) => {
     
     const result = array.filter(innerArray => innerArray[position1].includes(element) == true && innerArray[position2] !== null);
 
-    // console.log(result)
+    // console.log('result: ', result)
 
     return result
   }
@@ -54,12 +54,34 @@ const CocktailPicker = ({ featuredCocktailToGet, featuredCocktailTrigger }) => {
 
     const convertedArr = arr
 
-    for (let i = 0; i < convertedArr.length; i++) {
-      if (convertedArr[i][1].toLowerCase().includes(' cl')) {
+    // console.log('arr: ', arr)
+    // console.log('convertedArr: ', convertedArr)
 
+    for (let i = 0; i < convertedArr.length; i++) {
+
+      if (convertedArr[i][1].toLowerCase().includes(' cl') && convertedArr[i][1].toLowerCase().includes('-') ) {
+
+        const splitOnSpaceArr = convertedArr[i][1].split(' ')
+        const splitOnDashArr = splitOnSpaceArr[0].split('-')
+
+        convertedArr[i][1] = `${roundToNearestQuarter(splitOnDashArr[0] * 0.33814)} - ${roundToNearestQuarter(splitOnDashArr[1] * 0.33814)} oz `
+
+        // console.log(convertedArr[i][1])
+      } else if (convertedArr[i][1].toLowerCase().includes(' ml') && convertedArr[i][1].toLowerCase().includes('-') ) {
+
+        const splitOnSpaceArr = convertedArr[i][1].split(' ')
+        const splitOnDashArr = splitOnSpaceArr[0].split('-')
+
+        convertedArr[i][1] = `${roundToNearestQuarter(splitOnDashArr[0] * 0.033814)} - ${roundToNearestQuarter(splitOnDashArr[1] * 0.033814)} oz `
+
+        // console.log(convertedArr[i][1])
+      } else if (convertedArr[i][1].toLowerCase().includes(' cl')) {
+
+        // console.log(convertedArr)
         convertedArr[i][1] = `${roundToNearestQuarter(convertedArr[i][1].split(' ')[0] * 0.33814)} oz `
       } else if (convertedArr[i][1].toLowerCase().includes(' ml')) {
 
+        // console.log(convertedArr)
         convertedArr[i][1] = `${roundToNearestQuarter(convertedArr[i][1].split(' ')[0] * 0.033814)} oz `
       }
     }
@@ -73,7 +95,7 @@ const CocktailPicker = ({ featuredCocktailToGet, featuredCocktailTrigger }) => {
   }
 
   const roundToNearestQuarter = (num) => {
-    
+
     return Math.round(num * 4) / 4
   }
 
@@ -93,6 +115,9 @@ const CocktailPicker = ({ featuredCocktailToGet, featuredCocktailTrigger }) => {
       setIngredientsArr(filterAndConvert(Object.entries(data.drinks[0]), 'Ingredient', 0, 1))
       setMeasuresArr(filterAndConvert(Object.entries(data.drinks[0]), 'Measure', 0, 1))
 
+      // setIngredientsArr(filterByPosition(Object.entries(data.drinks[0]), 'Ingredient', 0, 1))
+      // setMeasuresArr(filterByPosition(Object.entries(data.drinks[0]), 'Measure', 0, 1))
+
       setDrinkImage(data.drinks[0].strDrinkThumb)
       setGlassType(data.drinks[0].strGlass)
       setDrinkName(data.drinks[0].strDrink)
@@ -101,7 +126,7 @@ const CocktailPicker = ({ featuredCocktailToGet, featuredCocktailTrigger }) => {
       setScrollTrigger(!scrollTrigger)
 
     } catch (err) {
-      console.log('Error: ', err)
+      // console.log('Error: ', err)
     }
   }
 
@@ -113,6 +138,8 @@ const CocktailPicker = ({ featuredCocktailToGet, featuredCocktailTrigger }) => {
 
       const response = await fetch(`https://thecocktaildb.com/api/json/v1/1/search.php?s=${featuredCocktail}`)
       const data = await response.json()
+
+      // console.log('data: ', data)
 
       data.drinks !== null ? setShowCocktailCard(true) : setShowCocktailCard(false)
 
@@ -127,7 +154,7 @@ const CocktailPicker = ({ featuredCocktailToGet, featuredCocktailTrigger }) => {
       setScrollTrigger(!scrollTrigger)
 
     } catch (err) {
-      console.log('Error: ', err)
+      // console.log('Error: ', err)
     }
 
   }
