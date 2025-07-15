@@ -11,12 +11,10 @@ function App() {
   const [featuredCocktailTrigger, setFeaturedCocktailTrigger] = useState(true)
 
 
-  const testCocktail = (beverage) => {
-    // console.log('hi test cocktail')
+  const updateFeaturedCocktailAndTrigger = (beverage) => {
 
     setFeaturedCocktailToGet(beverage)
     setFeaturedCocktailTrigger(!featuredCocktailTrigger)
-    // console.log('testCocktail(): ', featuredCocktailToGet)
   }
 
   return (
@@ -27,14 +25,14 @@ function App() {
         featuredCocktailTrigger={featuredCocktailTrigger} 
       />
       <FeaturedCocktails 
-        handleGreyhoundClick={() => testCocktail('greyhound')}
-        handleVampiroClick={() => testCocktail('vampiro')}
-        handleThePhilosopherClick={() => testCocktail('the philosopher')}
-        handleGinLemonClick={() => testCocktail('gin lemon')}
-        handleMountainBrambleClick={() => testCocktail('mountain bramble')}
-        handleGrimReaperClick={() => testCocktail('grim reaper')}
-        handleB52Click={() => testCocktail('b-52')}
-        handleGaribaldiNegroniClick={() => testCocktail('garibaldi negroni')}
+        handleGreyhoundClick={() => updateFeaturedCocktailAndTrigger('greyhound')}
+        handleVampiroClick={() => updateFeaturedCocktailAndTrigger('vampiro')}
+        handleThePhilosopherClick={() => updateFeaturedCocktailAndTrigger('the philosopher')}
+        handleGinLemonClick={() => updateFeaturedCocktailAndTrigger('gin lemon')}
+        handleMountainBrambleClick={() => updateFeaturedCocktailAndTrigger('mountain bramble')}
+        handleGrimReaperClick={() => updateFeaturedCocktailAndTrigger('grim reaper')}
+        handleB52Click={() => updateFeaturedCocktailAndTrigger('b-52')}
+        handleGaribaldiNegroniClick={() => updateFeaturedCocktailAndTrigger('garibaldi negroni')}
       />
       <Footer />
     </>
