@@ -17,7 +17,7 @@ const Navbar = () => {
             <li><a>Contact</a></li>
           </ul>
         </div> */}
-        <a className="btn btn-ghost text-2xl">Cocktail Crafter</a>
+        <a href="#" className="btn btn-ghost text-2xl">Cocktail Crafter</a>
       </div>
       <div className="navbar-end">
         <div className="hidden md:flex">
