@@ -4,9 +4,9 @@ const Footer = () => {
   return (
     <footer className="footer footer-horizontal footer-center bg-base-200 text-base-content rounded p-10">
       <nav className="grid grid-flow-col gap-4">
-        <a className="link link-hover">Home</a>
-        <a className="link link-hover">Cocktail Picker</a>
-        <a className="link link-hover">Featured Cocktails</a>
+        <a href="#" className="link link-hover">Home</a>
+        <a href="#cocktail-picker" className="link link-hover">Cocktail Picker</a>
+        <a href="#featured-cocktails" className="link link-hover">Featured Cocktails</a>
       </nav>
       <aside>
         <p>
