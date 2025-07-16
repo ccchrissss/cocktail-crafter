@@ -1,3 +1,10 @@
+/* this shows an outline around elements to help determine which one is causing the page to have horizontal and vertical scrollbars due to overflow. */
+/* * {
+  outline: 1px solid #f00 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+} */
+
 /* html {
   background: rgb(167, 167, 167);
 } */
