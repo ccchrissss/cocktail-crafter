@@ -162,7 +162,7 @@ const CocktailPicker = ({ featuredCocktailToGet, featuredCocktailTrigger }) => {
 
   return (
     <>
-      <div className="hero bg-base-200 min-h-[400px]">
+      <div id="cocktail-picker" className="hero bg-base-200 min-h-[400px]">
         <div className="hero-content flex-col lg:flex-row-reverse p-6">
           <img
             src={cocktailInHand}

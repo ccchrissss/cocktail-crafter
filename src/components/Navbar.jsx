@@ -22,9 +22,9 @@ const Navbar = () => {
       <div className="navbar-end">
         <div className="hidden md:flex">
           <ul className="menu menu-horizontal px-1">
-            <li><a>Home</a></li>
-            <li><a>Cocktail Picker</a></li>
-            <li><a>Featured Cocktails</a></li>
+            <li><a href="#">Home</a></li>
+            <li><a href="#cocktail-picker">Cocktail Picker</a></li>
+            <li><a href="#featured-cocktails">Featured Cocktails</a></li>
           </ul>
         </div>
         <div className="dropdown relative">
@@ -34,9 +34,9 @@ const Navbar = () => {
           <ul
             tabIndex={0}
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow absolute right-0">
-            <li><a>Home</a></li>
-            <li><a>Cocktail Picker</a></li>
-            <li><a>Featured Cocktails</a></li>
+            <li><a href="#">Home</a></li>
+            <li><a href="#cocktail-picker">Cocktail Picker</a></li>
+            <li><a href="#featured-cocktails">Featured Cocktails</a></li>
           </ul>
         </div>
       </div>

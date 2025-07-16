@@ -41,3 +41,7 @@
   --depth: 0;
   --noise: 0;
 }
+
+html {
+  scroll-behavior: smooth;
+}

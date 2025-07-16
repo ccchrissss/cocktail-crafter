@@ -29,7 +29,7 @@ const FeaturedCocktails = ({ handleGreyhoundClick, handleVampiroClick, handleThe
 
   return (
     <>
-      <h3 className="p-6 text-xl">Featured Cocktails</h3>
+      <h3 id="featured-cocktails" className="p-6 text-xl">Featured Cocktails</h3>
       <div className="relative group/arrow-btns">
         <div ref={carouselRef} className="relative carousel carousel-center rounded-box max-h-60 md:mx-6">
           {/* <div className="top-1/2 absolute left-5 right-5 flex transform justify-between ">
