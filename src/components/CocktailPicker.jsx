@@ -163,7 +163,7 @@ const CocktailPicker = ({ featuredCocktailToGet, featuredCocktailTrigger }) => {
   return (
     <>
       <div id="cocktail-picker" className="hero bg-base-200 min-h-[400px]">
-        <div className="hero-content flex-col lg:flex-row-reverse p-6">
+        <div className="hero-content flex-col lg:flex-row-reverse max-w-screen-xl p-6">
           <img
             src={cocktailInHand}
             className="hidden rounded-lg shadow-2xl m-8 lg:block"
@@ -188,27 +188,29 @@ const CocktailPicker = ({ featuredCocktailToGet, featuredCocktailTrigger }) => {
       {/* <img src={drinkPic} /> */}
 
       {showCocktailCard && 
-        <div ref={cocktailCard} className="card lg:card-side bg-base-100 shadow-sm md:flex-row md:flex-wrap md:w-full">
-          <div className="card-body border-5 border-double border-[#C9C9C9] rounded-md m-6 flex-col flex-1 md:max-w-1/2">
-            <h2 className="card-title">{drinkName}</h2>
-            <p className="italic">{glassType}</p>
-            <h3 className="font-bold">Ingredients</h3>
-            <ul>
-              {ingredientsArr.map( (e, i) => (
-                <li key={`ingredient-${i}`}>
-                  {measuresArr[i] ? measuresArr[i][1] + ' ' : ''}{e[1]}
-                </li>
-              ))}
-            </ul>
-            <h3 className="font-bold">Instructions</h3>
-            <p>{instructions}</p>
-            {/* <div className="card-actions justify-end">
-              <button className="btn btn-primary">Listen</button>
-            </div> */}
+        <div className="bg-base-100 flex justify-center">
+          <div ref={cocktailCard} className="card lg:card-side max-w-screen-xl shadow-[0_5px_7px_rgba(0,0,0,0.2)] backdrop-blur-[5px md:flex-row md:flex-wrap md:w-full m-2 mt-6">
+            <div className="card-body border-5 border-double border-[#C9C9C9] rounded-md m-6 flex-col flex-1 md:max-w-1/2">
+              <h2 className="card-title text-2xl">{drinkName}</h2>
+              <p className="italic">{glassType}</p>
+              <h3 className="font-bold">Ingredients</h3>
+              <ul>
+                {ingredientsArr.map( (e, i) => (
+                  <li key={`ingredient-${i}`}>
+                    {measuresArr[i] ? measuresArr[i][1] + ' ' : ''}{e[1]}
+                  </li>
+                ))}
+              </ul>
+              <h3 className="font-bold">Instructions</h3>
+              <p>{instructions}</p>
+              {/* <div className="card-actions justify-end">
+                <button className="btn btn-primary">Listen</button>
+              </div> */}
+            </div>
+            <figure className="md:order-first m-6 flex-col flex-1  md:max-w-1/2">
+              <img src={drinkImage} alt="cocktail" className="rounded-md text-transparent" />
+            </figure>
           </div>
-          <figure className="md:order-first m-6 flex-col flex-1  md:max-w-1/2">
-            <img src={drinkImage} alt="cocktail" className="rounded-md" />
-          </figure>
         </div>
       }
       
