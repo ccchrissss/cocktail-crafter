@@ -5,8 +5,12 @@ const Header = () => {
   
   return (
     <>
-      <img src={liquorShelves}></img>
-      <Navbar />
+      <div className="flex justify-center">
+        <div className="max-w-screen-xl">
+          <img src={liquorShelves}></img>
+          <Navbar />
+        </div>
+      </div>
     </>
   )
 }
