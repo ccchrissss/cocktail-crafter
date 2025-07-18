@@ -14,9 +14,9 @@ Introducing **Cocktail Crafter**! A cocktail recipe web app without all the exce
 
 **Tech used:** React, daisyUI, Tailwind CSS, TheCocktailDB API
 
-I created **Cocktail Crafter** as a sleek, single page application to help users mix up delectable drinks. The landing page prominently displays the app's main feature: The Cocktail Picker. Users are prompted to enter their cocktail of choice in the input box. This triggers the getDrink() function which fetches a variety of data from TheCocktailDB API. A function called convertAndFilter() extracts the desired information from the ingredients and measures arrays, while also converting the data from metric to US customary units, if needed. Then, the ap renders the CocktailCard component with this data, providing the user with an image, official name, ingredients list, and instructions to craft their desired drink. 
+I created **Cocktail Crafter** as a sleek, single page application to help users mix up delectable drinks. The landing page prominently displays the app's main feature: The Cocktail Picker. Users are prompted to enter their cocktail of choice in the input box. This triggers the getDrink() function which fetches a variety of data from TheCocktailDB API. A function called convertAndFilter() filters the data into two arrays containing the ingredients and measures and converts the measures from metric to US Customary, if needed. Then, the app renders the CocktailCard component with this data, providing the user with an image, official name, ingredients list, and instructions to craft their desired drink. 
 
-Further down the page, we have a carousel of hand-selected cocktails to inspire the user to try something new. They can then click the caption inside a given image and they'll be brought back up to the recipe section which will dynamically update to show the new cocktail information.
+Further down the page, we have a carousel of hand-selected cocktails to inspire the user to try something new. They can click the caption inside a drink image and they'll be brought back up to the recipe section which will dynamically update to show the new cocktail information.
 
 
 ## Lessons Learned:
