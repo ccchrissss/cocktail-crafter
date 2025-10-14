@@ -40,7 +40,7 @@ const FeaturedCocktails = ({ handleGreyhoundClick, handleVampiroClick, handleThe
                 <a className="btn btn-circle" onClick={() => handleClick(1)}>❯</a>
               </div> */}
               <div className="carousel-item max-w-[216px] py-3 px-3">
-                <div className="absolute peer w-[216px] bottom-3 h-[25%] flex justify-center items-center text-l font text-white rounded-b-md border-t-1 border-white backdrop-brightness-87 font-medium backdrop-blur-[5px]">
+                <div className="absolute peer w-[216px] bottom-3 h-[25%] flex justify-center items-center text-l font text-white rounded-b-md border-t-[1px] border-white font-medium backdrop-filters-wk-safe backdrop-blur-[5px] backdrop-brightness-90">
                   <h3 className="cursor-pointer">
                   <a className="link link-hover" onClick={handleGreyhoundClick}>Greyhound</a></h3>
                 </div>
@@ -49,7 +49,7 @@ const FeaturedCocktails = ({ handleGreyhoundClick, handleVampiroClick, handleThe
                   alt="Greyhound" />
               </div>
               <div className="carousel-item max-w-[216px] py-3 px-3">
-                <div className="absolute peer w-[216px] bottom-3 h-[25%] flex justify-center items-center text-l font text-white rounded-b-md border-t-1 border-white backdrop-brightness-87 font-medium backdrop-blur-[5px]">
+                <div className="absolute peer w-[216px] bottom-3 h-[25%] flex justify-center items-center text-l font text-white rounded-b-md border-t-[1px] border-white font-medium backdrop-filters-wk-safe backdrop-blur-[5px] backdrop-brightness-90">
                   <h3 className="cursor-pointer">
                   <a className="link link-hover" onClick={handleVampiroClick}>Vampiro</a></h3>
                 </div>
@@ -58,7 +58,7 @@ const FeaturedCocktails = ({ handleGreyhoundClick, handleVampiroClick, handleThe
                   alt="Vampiro" />
               </div>
               <div className="carousel-item max-w-[216px] py-3 px-3">
-                <div className="absolute peer w-[216px] bottom-3 h-[25%] flex justify-center items-center text-l font text-white rounded-b-md border-t-1 border-white backdrop-brightness-87 font-medium backdrop-blur-[5px]">
+                <div className="absolute peer w-[216px] bottom-3 h-[25%] flex justify-center items-center text-l font text-white rounded-b-md border-t-[1px] border-white font-medium backdrop-filters-wk-safe backdrop-blur-[5px] backdrop-brightness-90">
                   <h3 className="cursor-pointer">
                   <a className="link link-hover" onClick={handleThePhilosopherClick}>The Philosopher</a></h3>
                 </div>
@@ -67,7 +67,7 @@ const FeaturedCocktails = ({ handleGreyhoundClick, handleVampiroClick, handleThe
                     alt="The Philosopher" />
               </div>
               <div className="carousel-item max-w-[216px] py-3 px-3">
-                <div className="absolute peer w-[216px] bottom-3 h-[25%] flex justify-center items-center text-l font text-white rounded-b-md border-t-1 border-white backdrop-brightness-87 font-medium backdrop-blur-[5px]">
+                <div className="absolute peer w-[216px] bottom-3 h-[25%] flex justify-center items-center text-l font text-white rounded-b-md border-t-[1px] border-white font-medium backdrop-filters-wk-safe backdrop-blur-[5px] backdrop-brightness-90">
                   <h3 className="cursor-pointer">
                   <a className="link link-hover" onClick={handleGinLemonClick}>Gin Lemon</a></h3>
                 </div>
@@ -76,7 +76,7 @@ const FeaturedCocktails = ({ handleGreyhoundClick, handleVampiroClick, handleThe
                     alt="Gin Lemon" />
               </div>
               <div className="carousel-item max-w-[216px] py-3 px-3">
-                <div className="absolute peer w-[216px] bottom-3 h-[25%] flex justify-center items-center text-l font text-white rounded-b-md border-t-1 border-white backdrop-brightness-87 font-medium backdrop-blur-[5px]">
+                <div className="absolute peer w-[216px] bottom-3 h-[25%] flex justify-center items-center text-l font text-white rounded-b-md border-t-[1px] border-white font-medium backdrop-filters-wk-safe backdrop-blur-[5px] backdrop-brightness-90">
                   <h3 className="cursor-pointer">
                   <a className="link link-hover" onClick={handleMountainBrambleClick}>Mountain Bramble</a></h3>
                 </div>
@@ -85,7 +85,7 @@ const FeaturedCocktails = ({ handleGreyhoundClick, handleVampiroClick, handleThe
                     alt="Mountain Bramble" />
               </div>
               <div className="carousel-item max-w-[216px] py-3 px-3">
-                <div className="absolute peer w-[216px] bottom-3 h-[25%] flex justify-center items-center text-l text-white rounded-b-md border-t-1 border-white backdrop-brightness-87 font-medium backdrop-blur-[5px]">
+                <div className="absolute peer w-[216px] bottom-3 h-[25%] flex justify-center items-center text-l text-white rounded-b-md border-t-[1px] border-white font-medium backdrop-filters-wk-safe backdrop-blur-[5px] backdrop-brightness-90">
                   <h3 className="cursor-pointer">
                   <a className="link link-hover" onClick={handleGrimReaperClick}>Grim Reaper</a></h3>
                 </div>
@@ -94,7 +94,7 @@ const FeaturedCocktails = ({ handleGreyhoundClick, handleVampiroClick, handleThe
                   alt="Grim Reaper" />
               </div>
               <div className="carousel-item max-w-[216px] py-3 px-3">
-                <div className="absolute peer w-[216px] bottom-3 h-[25%] flex justify-center items-center text-l font text-white rounded-b-md border-t-1 border-white backdrop-brightness-87 font-medium backdrop-blur-[5px]">
+                <div className="absolute peer w-[216px] bottom-3 h-[25%] flex justify-center items-center text-l font text-white rounded-b-md border-t-[1px] border-white font-medium backdrop-filters-wk-safe backdrop-blur-[5px] backdrop-brightness-90">
                   <h3 className="cursor-pointer">
                   <a className="link link-hover" onClick={handleB52Click}>B-52</a></h3>
                 </div>
@@ -103,7 +103,7 @@ const FeaturedCocktails = ({ handleGreyhoundClick, handleVampiroClick, handleThe
                   alt="B-52" />
               </div>
               <div className="carousel-item relative max-w-[216px] py-3 px-3">
-                <div className="absolute peer w-[216px] bottom-3 h-[25%] flex justify-center items-center text-l text-white rounded-b-md border-t-1 border-white backdrop-brightness-87 font-medium backdrop-blur-[5px]">
+                <div className="absolute peer w-[216px] bottom-3 h-[25%] flex justify-center items-center text-l text-white rounded-b-md border-t-[1px] border-white font-medium backdrop-filters-wk-safe backdrop-blur-[5px] backdrop-brightness-90">
                   <h3 className="cursor-pointer">
                   <a className="link link-hover" onClick={handleGaribaldiNegroniClick}>Garibaldi Negroni</a></h3>
                 </div>
