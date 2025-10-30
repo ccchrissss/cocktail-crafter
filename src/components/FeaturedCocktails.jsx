@@ -18,7 +18,7 @@ const FeaturedCocktails = ({ handleGreyhoundClick, handleVampiroClick, handleThe
     // carouselRef.scroll(100,0)
 
     carouselRef.current.scrollBy({
-      left: direction * 100,
+      left: direction * 216,
       behavior: 'smooth',
     })
   }
