@@ -17,13 +17,27 @@ const FeaturedCocktails = ({ handleGreyhoundClick, handleVampiroClick, handleThe
   const handleClick = direction => {
     // carouselRef.scroll(100,0)
 
-    console.log('carouselRef.current: ', carouselRef.current)
+    // console.log('carouselRef.current: ', carouselRef.current)
+    // console.log('scrollHeight: ', carouselRef.current.scrollHeight)
+    // console.log('scrollLeftMax: ', carouselRef.current.scrollLeftMax)
+    // console.log('scrollTop: ', carouselRef.current.scrollTop)
+    // console.log('scrollTopMax: ', carouselRef.current.scrollTopMax)
+    // console.log('scrollWidth: ', carouselRef.current.scrollWidth)
 
-    carouselRef.current.scrollBy({
-      // left: direction * 216,
-      left: direction * 100,
-      behavior: 'smooth',
-    })
+    // console.log('scrollLeft: ', carouselRef.current.scrollLeft)
+    // console.log('directionArg: ', direction)
+    // console.log('...')
+
+    if ( (carouselRef.current.scrollLeft == 0 && direction == -1) || (carouselRef.current.scrollLeft > 1408 && direction == 1) ) { 
+      ''
+    } else {
+      carouselRef.current.scrollBy({
+        left: direction * 216,
+        // left: direction * 100,
+        behavior: 'smooth',
+      })
+    }
+
   }
 
   // const handleFeaturedCocktailClick = () => {
