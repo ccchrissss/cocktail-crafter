@@ -24,20 +24,28 @@ const FeaturedCocktails = ({ handleGreyhoundClick, handleVampiroClick, handleThe
     // console.log('scrollTopMax: ', carouselRef.current.scrollTopMax)
     // console.log('scrollWidth: ', carouselRef.current.scrollWidth)
 
-    // console.log('scrollLeft: ', carouselRef.current.scrollLeft)
-    // console.log('directionArg: ', direction)
-    // console.log('...')
+    console.log('scrollLeft: ', carouselRef.current.scrollLeft)
+    console.log('directionArg: ', direction)
+    console.log('...')
 
-    if ( (carouselRef.current.scrollLeft == 0 && direction == -1) || (carouselRef.current.scrollLeft > 1408 && direction == 1) ) { 
-      ''
-    } else {
+    //this doesnt seem to work on safari mobile on my phone for some reason. Would need to use the safari console to debug it
+    // if ( (carouselRef.current.scrollLeft == 0 && direction == -1) || (carouselRef.current.scrollLeft > 1408 && direction == 1) ) { 
+    //   ''
+    // } else {
+    //   carouselRef.current.scrollBy({
+    //     left: direction * 216,
+    //     // left: direction * 100,
+    //     behavior: 'smooth',
+    //   })
+    // }
+
+
+
       carouselRef.current.scrollBy({
         left: direction * 216,
         // left: direction * 100,
         behavior: 'smooth',
       })
-    }
-
   }
 
   // const handleFeaturedCocktailClick = () => {
@@ -56,7 +64,7 @@ const FeaturedCocktails = ({ handleGreyhoundClick, handleVampiroClick, handleThe
                 <a className="btn btn-square" onClick={() => handleClick(-1)}>❮</a>
                 <a className="btn btn-circle" onClick={() => handleClick(1)}>❯</a>
               </div> */}
-              <div className="carousel-item relative max-w-[216px] py-3 px-3">
+              <div className="carousel-item relative max-w-[216px] py-3 px-3 pl-14">
                 <div className="absolute peer w-[216px] bottom-3 h-[25%] flex justify-center items-center text-l font text-white rounded-b-md border-t-[1px] border-white font-medium backdrop-filters-wk-safe backdrop-blur-[5px] backdrop-brightness-90">
                   <h3 className="cursor-pointer">
                   <a className="link link-hover" onClick={handleGreyhoundClick}>Greyhound</a></h3>
