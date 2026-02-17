@@ -42,7 +42,7 @@ const FeaturedCocktails = ({ handleGreyhoundClick, handleVampiroClick, handleThe
 
 
       carouselRef.current.scrollBy({
-        left: direction * 216,
+        left: direction * 240,
         // left: direction * 100,
         behavior: 'smooth',
       })
@@ -64,7 +64,7 @@ const FeaturedCocktails = ({ handleGreyhoundClick, handleVampiroClick, handleThe
                 <a className="btn btn-square" onClick={() => handleClick(-1)}>❮</a>
                 <a className="btn btn-circle" onClick={() => handleClick(1)}>❯</a>
               </div> */}
-              <div className="carousel-item relative max-w-[216px] py-3 px-3 pl-14">
+              <div className="carousel-item relative max-w-[216px] py-3 px-3">
                 <div className="absolute peer w-[216px] bottom-3 h-[25%] flex justify-center items-center text-l font text-white rounded-b-md border-t-[1px] border-white font-medium backdrop-filters-wk-safe backdrop-blur-[5px] backdrop-brightness-90">
                   <h3 className="cursor-pointer">
                   <a className="link link-hover" onClick={handleGreyhoundClick}>Greyhound</a></h3>
