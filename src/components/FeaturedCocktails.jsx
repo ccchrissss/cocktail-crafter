@@ -7,14 +7,42 @@ import mountainBramble from '../assets/featured-cocktails/mountain-bramble.jpeg'
 import thePhilosopher from '../assets/featured-cocktails/the-philosopher.jpeg'
 import vampiro from '../assets/featured-cocktails/vampiro.jpeg'
 
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 
 
 const FeaturedCocktails = ({ handleGreyhoundClick, handleVampiroClick, handleThePhilosopherClick, handleGinLemonClick, handleMountainBrambleClick, handleGrimReaperClick, handleB52Click, handleGaribaldiNegroniClick }) => {
   
   const carouselRef = useRef(null)
+  const carouselFirstElRef = useRef(null)
+  const carouselLastElRef = useRef(null)
+
+  const [leftArrowBtnDisabled, setLeftArrowBtnDisabled] = useState(true)
+  const [rightArrowBtnDisabled, setRightArrowBtnDisabled] = useState(false)
+
+  const isVisibleInViewport = (element) => {
+    // console.log(element)
+    const rect = element.current.getBoundingClientRect()
+    // console.log('direction (for viewport rect): ', direction)
+    return (
+        rect.top >= 0 &&
+        rect.left >= 0 &&
+        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+    )
+  }
+
+  const handleCarouselScroll = () => {
+    // console.log('scrolly scroll')
+
+    !isVisibleInViewport(carouselLastElRef) ? setRightArrowBtnDisabled(false) : setRightArrowBtnDisabled(true)
+
+    !isVisibleInViewport(carouselFirstElRef) ? setLeftArrowBtnDisabled(false) : setLeftArrowBtnDisabled(true)
+  }
 
   const handleClick = direction => {
+
+    // console.log(leftArrowBtnDisabled)
+    // console.log(rightArrowBtnDisabled)
     // carouselRef.scroll(100,0)
 
     // console.log('carouselRef.current: ', carouselRef.current)
@@ -24,9 +52,9 @@ const FeaturedCocktails = ({ handleGreyhoundClick, handleVampiroClick, handleThe
     // console.log('scrollTopMax: ', carouselRef.current.scrollTopMax)
     // console.log('scrollWidth: ', carouselRef.current.scrollWidth)
 
-    console.log('scrollLeft: ', carouselRef.current.scrollLeft)
-    console.log('directionArg: ', direction)
-    console.log('...')
+    // console.log('scrollLeft: ', carouselRef.current.scrollLeft)
+    // console.log('directionArg: ', direction)
+    // console.log('...')
 
     //this doesnt seem to work on safari mobile on my phone for some reason. Would need to use the safari console to debug it
     // if ( (carouselRef.current.scrollLeft == 0 && direction == -1) || (carouselRef.current.scrollLeft > 1408 && direction == 1) ) { 
@@ -40,13 +68,151 @@ const FeaturedCocktails = ({ handleGreyhoundClick, handleVampiroClick, handleThe
     // }
 
 
+    // console.log(isVisibleInViewport(carouselFirstElRef, 'left'))
 
-      carouselRef.current.scrollBy({
-        left: direction * 240,
-        // left: direction * 100,
-        behavior: 'smooth',
-      })
+    // !isVisibleInViewport(carouselLastElRef, 'right') ? setRightArrowBtnDisabled(false) : setRightArrowBtnDisabled(true)
+
+    // !isVisibleInViewport(carouselFirstElRef, 'left') ? setLeftArrowBtnDisabled(false) : setLeftArrowBtnDisabled(true)
+
+    carouselRef.current.scrollBy({
+      left: direction * 240,
+      behavior: 'smooth',
+
+      // add logic to disable the right button
+      // maybe state change? or update the ref with value of 'right'
+
+    })
+
+  //   if (direction === 1 && 
+  //       !isVisibleInViewport(carouselLastElRef, 'right') && 
+  //       leftArrowBtnDisabled === true) {
+
+  //     setLeftArrowBtnDisabled(false)
+      
+  //     carouselRef.current.scrollBy({
+  //       left: direction * 240,
+  //       behavior: 'smooth',
+
+  //       // add logic to disable the right button
+  //       // maybe state change? or update the ref with value of 'right'
+
+  //     })
+
+  //     // setTimeout( () => {
+  //     //     console.log('yoooo 1000')
+  //     //     console.log(leftArrowBtnDisabled)
+  //     //     leftArrowBtnDisabled ? setLeftArrowBtnDisabled(false) : ''
+  //     //   }, 1000)
+
+  //     // leftArrowBtnDisabled ? setLeftArrowBtnDisabled(false) : ''
+  //   } else if (direction === 1 &&
+  //             !isVisibleInViewport(carouselLastElRef, 'right') &&
+  //             leftArrowBtnDisabled === false) {
+  //               carouselRef.current.scrollBy({
+  //                 left: direction * 240,
+  //                 behavior: 'smooth',
+  //               })      
+  //   }
+  //   // else {
+  //   //   setRightArrowBtnDisabled(true)
+  //   // }
+
+
+  //   if (direction === -1 && 
+  //       !isVisibleInViewport(carouselFirstElRef, 'left') && 
+  //       rightArrowBtnDisabled === true) {
+
+  //   setRightArrowBtnDisabled(false)
+    
+  //   carouselRef.current.scrollBy({
+  //     left: direction * 240,
+  //     behavior: 'smooth',
+
+  //     // add logic to disable the right button
+  //     // maybe state change? or update the ref with value of 'right'
+
+  //   })
+
+  //   // setTimeout( () => {
+  //   //     console.log('yoooo 1000')
+  //   //     console.log(leftArrowBtnDisabled)
+  //   //     leftArrowBtnDisabled ? setLeftArrowBtnDisabled(false) : ''
+  //   //   }, 1000)
+
+  //   // leftArrowBtnDisabled ? setLeftArrowBtnDisabled(false) : ''
+  // } 
+  // // else {
+  // //   setRightArrowBtnDisabled(true)
+  // // }
+  
+
+
+
+
+
+    // kinda works but arrow buttons grey out 1 step behind actual clicks.
+    // if (!isVisibleInViewport(carouselFirstElRef, 'left')) {
+
+    //   rightArrowBtnDisabled ? setRightArrowBtnDisabled(false) : ''
+
+    //   carouselRef.current.scrollBy({
+    //     left: direction * 240,
+    //     behavior: 'smooth',
+
+    //     // add logic to disable the left button
+    //     // maybe state change? or update the ref with value of 'left'
+      
+    //   })
+
+    //   // let currentState = rightArrowBtnDisabled
+
+    //   // rightArrowBtnDisabled ? setRightArrowBtnDisabled(false) : ''
+    // } else {
+
+    //   setLeftArrowBtnDisabled(true)
+
+    //   // let currentState = leftArrowBtnDisabled
+    //   // setLeftArrowBtnDisabled(!currentState)
+    //   // console.log('hello, its me. the left arrow btn.')
+    // }
+    // if (!isVisibleInViewport(carouselLastElRef, 'right')) {
+
+    //   leftArrowBtnDisabled ? setLeftArrowBtnDisabled(false) : ''
+      
+    //   carouselRef.current.scrollBy({
+    //     left: direction * 240,
+    //     behavior: 'smooth',
+
+    //     // add logic to disable the right button
+    //     // maybe state change? or update the ref with value of 'right'
+
+    //   })
+
+    //   // setTimeout( () => {
+    //   //     console.log('yoooo 1000')
+    //   //     console.log(leftArrowBtnDisabled)
+    //   //     leftArrowBtnDisabled ? setLeftArrowBtnDisabled(false) : ''
+    //   //   }, 1000)
+
+    //   // leftArrowBtnDisabled ? setLeftArrowBtnDisabled(false) : ''
+    // } else {
+
+    //   setRightArrowBtnDisabled(true)
+    // }
+    
+
+
+    // carouselRef.current.scrollBy({
+    //   left: direction * 240,
+    //   // left: direction * 100,
+    //   behavior: 'smooth',
+    // })
   }
+
+  // console.log('big rerender')
+  // console.log(leftArrowBtnDisabled)
+  // console.log(rightArrowBtnDisabled)
+  // console.log('...')
 
   // const handleFeaturedCocktailClick = () => {
   //   console.log('handle featured cocktail click')
@@ -59,12 +225,12 @@ const FeaturedCocktails = ({ handleGreyhoundClick, handleVampiroClick, handleThe
           <h3 id="featured-cocktails" className="p-6 text-xl">Featured Cocktails</h3>
           <div className="h-0 basis-full"></div>
           <div className="relative group/arrow-btns">
-            <div ref={carouselRef} className="relative carousel carousel-center rounded-box max-h-60 md:mx-6">
+            <div ref={carouselRef} className="relative carousel carousel-center rounded-box max-h-60 md:mx-6" onScroll={handleCarouselScroll}>
               {/* <div className="top-1/2 absolute left-5 right-5 flex transform justify-between ">
                 <a className="btn btn-square" onClick={() => handleClick(-1)}>❮</a>
                 <a className="btn btn-circle" onClick={() => handleClick(1)}>❯</a>
               </div> */}
-              <div className="carousel-item relative max-w-[216px] py-3 px-3">
+              <div ref={carouselFirstElRef} className="carousel-item relative max-w-[216px] py-3 px-3">
                 <div className="absolute peer w-[216px] bottom-3 h-[25%] flex justify-center items-center text-l font text-white rounded-b-md border-t-[1px] border-white font-medium backdrop-filters-wk-safe backdrop-blur-[5px] backdrop-brightness-90">
                   <h3 className="cursor-pointer">
                   <a className="link link-hover" onClick={handleGreyhoundClick}>Greyhound</a></h3>
@@ -127,7 +293,7 @@ const FeaturedCocktails = ({ handleGreyhoundClick, handleVampiroClick, handleThe
                   src={b52}
                   alt="B-52" />
               </div>
-              <div className="carousel-item relative max-w-[216px] py-3 px-3">
+              <div ref={carouselLastElRef} className="carousel-item relative max-w-[216px] py-3 px-3">
                 <div className="absolute peer w-[216px] bottom-3 h-[25%] flex justify-center items-center text-l text-white rounded-b-md border-t-[1px] border-white font-medium backdrop-filters-wk-safe backdrop-blur-[5px] backdrop-brightness-90">
                   <h3 className="cursor-pointer">
                   <a className="link link-hover" onClick={handleGaribaldiNegroniClick}>Garibaldi Negroni</a></h3>
@@ -140,8 +306,8 @@ const FeaturedCocktails = ({ handleGreyhoundClick, handleVampiroClick, handleThe
               </div>
             </div>
             <div className="left-7 right-7 flex transform justify-between mt-3 mb-6 px-6">
-              <a className="btn btn-circle" onClick={() => handleClick(-1)}>❮</a>
-              <a className="btn btn-circle" onClick={() => handleClick(1)}>❯</a>
+              <a className={`btn btn-circle`} disabled={leftArrowBtnDisabled}  onClick={() => handleClick(-1)}>❮</a>
+              <a className="btn btn-circle" disabled={rightArrowBtnDisabled} onClick={() => handleClick(1)}>❯</a>
             </div>
           </div>
         </div>
