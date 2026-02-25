@@ -19,7 +19,7 @@ export default {
           "base-content": "#1f2937", // text (gray-800)
 
           // Primary
-          "primary": "#4e63ff",
+          "primary": "#fb6b2e",
           "primary-content": "#ffffff",
 
           // Secondary

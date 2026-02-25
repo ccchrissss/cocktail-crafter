@@ -70,9 +70,9 @@ const FeaturedCocktails = ({ handleGreyhoundClick, handleVampiroClick, handleThe
 
     // console.log(isVisibleInViewport(carouselFirstElRef, 'left'))
 
-    // !isVisibleInViewport(carouselLastElRef, 'right') ? setRightArrowBtnDisabled(false) : setRightArrowBtnDisabled(true)
+    !isVisibleInViewport(carouselLastElRef, 'right') ? setRightArrowBtnDisabled(false) : setRightArrowBtnDisabled(true)
 
-    // !isVisibleInViewport(carouselFirstElRef, 'left') ? setLeftArrowBtnDisabled(false) : setLeftArrowBtnDisabled(true)
+    !isVisibleInViewport(carouselFirstElRef, 'left') ? setLeftArrowBtnDisabled(false) : setLeftArrowBtnDisabled(true)
 
     carouselRef.current.scrollBy({
       left: direction * 240,
