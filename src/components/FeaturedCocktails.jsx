@@ -31,12 +31,27 @@ const FeaturedCocktails = ({ handleGreyhoundClick, handleVampiroClick, handleThe
     )
   }
 
+  const firstCarouselElCheck = () => {
+
+    !isVisibleInViewport(carouselFirstElRef) ? setLeftArrowBtnDisabled(false) : setLeftArrowBtnDisabled(true)
+    console.log('firstCarouselElCheck')
+  }
+
+  const lastCarouselElCheck = () => {
+
+    !isVisibleInViewport(carouselLastElRef) ? setRightArrowBtnDisabled(false) : setRightArrowBtnDisabled(true)
+    console.log('lastCarouselElCheck')
+  }
+
   const handleCarouselScroll = () => {
     // console.log('scrolly scroll')
 
-    !isVisibleInViewport(carouselLastElRef) ? setRightArrowBtnDisabled(false) : setRightArrowBtnDisabled(true)
+    lastCarouselElCheck()
+    firstCarouselElCheck()
 
-    !isVisibleInViewport(carouselFirstElRef) ? setLeftArrowBtnDisabled(false) : setLeftArrowBtnDisabled(true)
+    // !isVisibleInViewport(carouselLastElRef) ? setRightArrowBtnDisabled(false) : setRightArrowBtnDisabled(true)
+
+    // !isVisibleInViewport(carouselFirstElRef) ? setLeftArrowBtnDisabled(false) : setLeftArrowBtnDisabled(true)
   }
 
   const handleClick = direction => {
@@ -70,9 +85,9 @@ const FeaturedCocktails = ({ handleGreyhoundClick, handleVampiroClick, handleThe
 
     // console.log(isVisibleInViewport(carouselFirstElRef, 'left'))
 
-    !isVisibleInViewport(carouselLastElRef, 'right') ? setRightArrowBtnDisabled(false) : setRightArrowBtnDisabled(true)
 
-    !isVisibleInViewport(carouselFirstElRef, 'left') ? setLeftArrowBtnDisabled(false) : setLeftArrowBtnDisabled(true)
+    lastCarouselElCheck()
+    firstCarouselElCheck()
 
     carouselRef.current.scrollBy({
       left: direction * 240,
@@ -82,6 +97,13 @@ const FeaturedCocktails = ({ handleGreyhoundClick, handleVampiroClick, handleThe
       // maybe state change? or update the ref with value of 'right'
 
     })
+
+    setTimeout( () => {
+
+      lastCarouselElCheck()
+      firstCarouselElCheck()
+      console.log('yoooo')
+    }, 1000)
 
   //   if (direction === 1 && 
   //       !isVisibleInViewport(carouselLastElRef, 'right') && 
