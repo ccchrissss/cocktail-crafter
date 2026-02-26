@@ -23,6 +23,9 @@ const FeaturedCocktails = ({ handleGreyhoundClick, handleVampiroClick, handleThe
     // console.log(element)
     const rect = element.current.getBoundingClientRect()
     // console.log('direction (for viewport rect): ', direction)
+
+    console.log('rect: ', rect)
+
     return (
         rect.top >= 0 &&
         rect.left >= 0 &&
@@ -31,16 +34,47 @@ const FeaturedCocktails = ({ handleGreyhoundClick, handleVampiroClick, handleThe
     )
   }
 
+  const isOutermostSideVisibleInViewport = (element, side) => {
+    // console.log(element)
+    const rect = element.current.getBoundingClientRect()
+    // console.log('direction (for viewport rect): ', direction)
+
+    // console.log('rect: ', rect)
+
+    if (side === 'left') {
+
+      // console.log( element, ' rect.left: ', rect.left)
+      return rect.left 
+
+    } else if (side === 'right') {
+
+      // console.log('window.innerWidth: ', window.innerWidth)
+      // console.log(element, ' rect.right: ', rect.right)
+      // console.log('rect last el: ', rect)
+      return rect.right
+
+    }
+  }
+
   const firstCarouselElCheck = () => {
 
-    !isVisibleInViewport(carouselFirstElRef) ? setLeftArrowBtnDisabled(false) : setLeftArrowBtnDisabled(true)
-    console.log('firstCarouselElCheck')
+    // !isOutermostSideVisibleInViewport(carouselFirstElRef, 'left') ? setLeftArrowBtnDisabled(false) : setLeftArrowBtnDisabled(true)
+
+
+    isOutermostSideVisibleInViewport(carouselFirstElRef, 'left') < isOutermostSideVisibleInViewport(carouselRef, 'left') ? setLeftArrowBtnDisabled(false) : setLeftArrowBtnDisabled(true)
+
+    // !isVisibleInViewport(carouselFirstElRef) ? setLeftArrowBtnDisabled(false) : setLeftArrowBtnDisabled(true)
+    // console.log('firstCarouselElCheck')
   }
 
   const lastCarouselElCheck = () => {
 
-    !isVisibleInViewport(carouselLastElRef) ? setRightArrowBtnDisabled(false) : setRightArrowBtnDisabled(true)
-    console.log('lastCarouselElCheck')
+    !isOutermostSideVisibleInViewport(carouselLastElRef, 'right') ? setRightArrowBtnDisabled(false) : setRightArrowBtnDisabled(true)
+
+    isOutermostSideVisibleInViewport(carouselLastElRef, 'right') > isOutermostSideVisibleInViewport(carouselRef, 'right') ? setRightArrowBtnDisabled(false) : setRightArrowBtnDisabled(true)
+  
+    // !isVisibleInViewport(carouselLastElRef) ? setRightArrowBtnDisabled(false) : setRightArrowBtnDisabled(true)
+    // console.log('lastCarouselElCheck')
   }
 
   const handleCarouselScroll = () => {
